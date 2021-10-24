@@ -22,7 +22,6 @@ class TabBarController: UITabBarController {
     init() {
         super.init(nibName: nil, bundle: nil)
         
-        
         setViewControllers(controllers, animated: false)
         
         guard let tabItems = tabBar.items else {

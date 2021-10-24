@@ -22,6 +22,9 @@
 		C2936676272342F3005BD90D /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2936675272342F3005BD90D /* InfoViewController.swift */; };
 		C2936678272342FE005BD90D /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2936677272342FE005BD90D /* InfoView.swift */; };
 		C293667F2723566A005BD90D /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293667E2723566A005BD90D /* UIButtonExtension.swift */; };
+		C293668127246F44005BD90D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293668027246F44005BD90D /* ProfileHeaderView.swift */; };
+		C293668327247C7D005BD90D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293668227247C7D005BD90D /* UIViewExtension.swift */; };
+		C29366872724D684005BD90D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29366862724D684005BD90D /* TextField.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		C2936675272342F3005BD90D /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		C2936677272342FE005BD90D /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		C293667E2723566A005BD90D /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		C293668027246F44005BD90D /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
+		C293668227247C7D005BD90D /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		C29366862724D684005BD90D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,7 @@
 				C293665C2721D8AE005BD90D /* LaunchScreen.storyboard */,
 				C293665F2721D8AE005BD90D /* Info.plist */,
 				C29366652721ECFD005BD90D /* TabBarController.swift */,
+				C29366862724D684005BD90D /* TextField.swift */,
 				C29366792723432B005BD90D /* Feed */,
 				C293667A2723433E005BD90D /* Profile */,
 				C293667B27234359005BD90D /* Post */,
@@ -104,6 +111,7 @@
 			children = (
 				C29366692721F042005BD90D /* ProfileViewController.swift */,
 				C293666D27221E55005BD90D /* ProfileView.swift */,
+				C293668027246F44005BD90D /* ProfileHeaderView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -130,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				C293667E2723566A005BD90D /* UIButtonExtension.swift */,
+				C293668227247C7D005BD90D /* UIViewExtension.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -204,8 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C293668327247C7D005BD90D /* UIViewExtension.swift in Sources */,
 				C293667227231252005BD90D /* PostViewController.swift in Sources */,
 				C2936676272342F3005BD90D /* InfoViewController.swift in Sources */,
+				C29366872724D684005BD90D /* TextField.swift in Sources */,
 				C293667027223873005BD90D /* FeedView.swift in Sources */,
 				C293666A2721F042005BD90D /* ProfileViewController.swift in Sources */,
 				C2936678272342FE005BD90D /* InfoView.swift in Sources */,
@@ -215,6 +226,7 @@
 				C293667F2723566A005BD90D /* UIButtonExtension.swift in Sources */,
 				C29366542721D8AA005BD90D /* SceneDelegate.swift in Sources */,
 				C293666E27221E55005BD90D /* ProfileView.swift in Sources */,
+				C293668127246F44005BD90D /* ProfileHeaderView.swift in Sources */,
 				C29366742723125C005BD90D /* PostView.swift in Sources */,
 				C29366662721ECFD005BD90D /* TabBarController.swift in Sources */,
 			);
