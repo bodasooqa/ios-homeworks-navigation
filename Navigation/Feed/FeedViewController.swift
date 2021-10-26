@@ -23,7 +23,9 @@ class FeedViewController: ViewController {
     
     lazy var feedView: FeedView = {
         feedView = FeedView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        feedView.button.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
+        [feedView.button1, feedView.button2].forEach{
+            $0.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
+        }
         return feedView
     }()
     

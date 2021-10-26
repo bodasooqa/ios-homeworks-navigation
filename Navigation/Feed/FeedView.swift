@@ -9,29 +9,44 @@ import UIKit
 
 class FeedView: UIView {
     
-    lazy var button: UIButton = {
-        .createButton(title: "New post")
+    lazy var button1: UIButton = {
+        .createButton(title: "Button 1")
+    }()
+    
+    lazy var button2: UIButton = {
+        .createButton(title: "Button 2")
+    }()
+    
+    lazy var stackView: UIStackView = {
+        UIStackView()
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.addSubview(button)
+        self.addSubview(stackView)
         
-        button.translatesAutoresizingMaskIntoConstraints = false
-        configureLayout()
+        configureStackView()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureLayout() {
+    func configureStackView() {
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            button.widthAnchor.constraint(equalToConstant: 160),
-            button.heightAnchor.constraint(equalToConstant: 40)
+            stackView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            stackView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16),
+            stackView.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
+            stackView.heightAnchor.constraint(equalToConstant: 100),
         ])
+        
+        stackView.addArrangedSubview(button1)
+        stackView.addArrangedSubview(button2)
     }
     
 }

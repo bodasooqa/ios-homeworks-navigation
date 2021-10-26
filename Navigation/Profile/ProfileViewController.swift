@@ -35,7 +35,19 @@ class ProfileViewController: ViewController {
         view.addSubview(profileView)
         profileView.addSubview(profileHeaderView)
         
-        [profileView, profileHeaderView].forEach { $0.putIntoSafeArea(view: view) }
+        profileView.putIntoSafeArea(view: view)
+        profileHeaderView.putIntoSafeArea(view: view, height: 220)
+        
+        let button: UIButton = .createButton(title: "Tap me")
+        button.translatesAutoresizingMaskIntoConstraints = false
+        
+        profileView.addSubview(button)
+        
+        NSLayoutConstraint.activate([
+            button.leftAnchor.constraint(equalTo: profileView.leftAnchor),
+            button.rightAnchor.constraint(equalTo: profileView.rightAnchor),
+            button.bottomAnchor.constraint(equalTo: profileView.safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
     
     override func viewDidLoad() {
@@ -43,7 +55,7 @@ class ProfileViewController: ViewController {
     }
     
     override func viewWillLayoutSubviews() {
-        profileHeaderView.frame = view.frame
+        
     }
     
     @objc func onButtonTap(_ sender: UIButton) {
