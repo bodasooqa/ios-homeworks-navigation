@@ -10,19 +10,20 @@ import UIKit
 class TabBarController: UITabBarController {
     
     private let controllers = [
-        UINavigationController(rootViewController: ProfileViewController()),
-        UINavigationController(rootViewController: FeedViewController())
+        UINavigationController(rootViewController: FeedViewController()),
+        UINavigationController(rootViewController: LoginViewController())
     ]
     
     private let images = [
-        UIImage(systemName: "person.circle"),
-        UIImage(systemName: "house")
+        UIImage(systemName: "house"),
+        UIImage(systemName: "person.circle")
     ]
     
     init() {
         super.init(nibName: nil, bundle: nil)
         
         setViewControllers(controllers, animated: false)
+        tabBar.tintColor = UIColor(named: "MainColor")
         
         guard let tabItems = tabBar.items else {
             return
