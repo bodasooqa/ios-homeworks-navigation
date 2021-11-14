@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ProfileHeaderView: UIView {
+class ProfileHeaderView: UITableViewHeaderFooterView {
+    
+    static let identifier: String = "header"
     
     let imageSize = 120
     
@@ -77,8 +79,8 @@ class ProfileHeaderView: UIView {
         [imageView, headerLabel, button, statusLabel, textField]
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
         
         subViews.forEach {
             addSubview($0)

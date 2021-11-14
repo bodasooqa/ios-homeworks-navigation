@@ -27,6 +27,8 @@
 		C29366872724D684005BD90D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29366862724D684005BD90D /* TextField.swift */; };
 		C2DA438E273061C5002A3264 /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DA438D273061C5002A3264 /* LogInViewController.swift */; };
 		C2DA439027306DCF002A3264 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2DA438F27306DCF002A3264 /* LoginView.swift */; };
+		C2FC5112273ADA510096DF28 /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FC5111273ADA510096DF28 /* PostModel.swift */; };
+		C2FC5114273E86410096DF28 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FC5113273E86410096DF28 /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +54,8 @@
 		C29366862724D684005BD90D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		C2DA438D273061C5002A3264 /* LogInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
 		C2DA438F27306DCF002A3264 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		C2FC5111273ADA510096DF28 /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		C2FC5113273E86410096DF28 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 		C29366502721D8AA005BD90D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				C2FC5110273ADA340096DF28 /* models */,
 				C293667D27235657005BD90D /* extensions */,
 				C29366512721D8AA005BD90D /* AppDelegate.swift */,
 				C29366532721D8AA005BD90D /* SceneDelegate.swift */,
@@ -127,6 +132,7 @@
 			children = (
 				C293667127231252005BD90D /* PostViewController.swift */,
 				C29366732723125C005BD90D /* PostView.swift */,
+				C2FC5113273E86410096DF28 /* PostTableViewCell.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -147,6 +153,14 @@
 				C293668227247C7D005BD90D /* UIViewExtension.swift */,
 			);
 			path = extensions;
+			sourceTree = "<group>";
+		};
+		C2FC5110273ADA340096DF28 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				C2FC5111273ADA510096DF28 /* PostModel.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +240,7 @@
 				C2DA438E273061C5002A3264 /* LogInViewController.swift in Sources */,
 				C293667027223873005BD90D /* FeedView.swift in Sources */,
 				C293666A2721F042005BD90D /* ProfileViewController.swift in Sources */,
+				C2FC5114273E86410096DF28 /* PostTableViewCell.swift in Sources */,
 				C2936678272342FE005BD90D /* InfoView.swift in Sources */,
 				C29366562721D8AA005BD90D /* ViewController.swift in Sources */,
 				C29366522721D8AA005BD90D /* AppDelegate.swift in Sources */,
@@ -233,6 +248,7 @@
 				C293667F2723566A005BD90D /* UIButtonExtension.swift in Sources */,
 				C2DA439027306DCF002A3264 /* LoginView.swift in Sources */,
 				C29366542721D8AA005BD90D /* SceneDelegate.swift in Sources */,
+				C2FC5112273ADA510096DF28 /* PostModel.swift in Sources */,
 				C293666E27221E55005BD90D /* ProfileView.swift in Sources */,
 				C293668127246F44005BD90D /* ProfileHeaderView.swift in Sources */,
 				C29366742723125C005BD90D /* PostView.swift in Sources */,
