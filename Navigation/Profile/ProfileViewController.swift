@@ -42,9 +42,6 @@ class ProfileViewController: ViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
-        
         tableView.layoutIfNeeded()
         
         onTextFieldChage(profileHeaderView?.textField)
@@ -91,12 +88,12 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         return 250
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        UITableView.automaticDimension
-//    }
-//
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        100
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
+
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
+    }
     
 }
