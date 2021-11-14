@@ -19,7 +19,7 @@ class ProfileViewController: ViewController {
     }()
     
     lazy var profileView: ProfileView = {
-        return ProfileView()
+        ProfileView()
     }()
     
     init() {

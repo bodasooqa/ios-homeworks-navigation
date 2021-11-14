@@ -25,5 +25,5 @@ class TextField: UITextField {
         let rect = super.editingRect(forBounds: bounds)
         return rect.inset(by: textPadding)
     }
-
+    
 }
