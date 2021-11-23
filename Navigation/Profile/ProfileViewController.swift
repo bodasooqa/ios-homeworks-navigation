@@ -42,8 +42,6 @@ class ProfileViewController: ViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        tableView.layoutIfNeeded()
-        
         onTextFieldChage(profileHeaderView?.textField)
     }
 

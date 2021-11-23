@@ -6,9 +6,9 @@
 //
 
 struct Post {
-    var author: String
-    var description: String
-    var image: String
-    var likes: Int
-    var views: Int
+    let author: String
+    let description: String
+    let image: String
+    let likes: Int
+    let views: Int
 }

@@ -11,8 +11,6 @@ class PostTableViewCell: UITableViewCell {
     
     static let identifier: String = "cell"
     
-    fileprivate var post: Post?
-    
     lazy var headerLabel: UILabel = {
         headerLabel = UILabel()
         headerLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
@@ -64,18 +62,6 @@ class PostTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    func set(post: Post) {
-        self.post = post
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
         
         subViews.forEach {
             contentView.addSubview($0)
@@ -83,15 +69,18 @@ class PostTableViewCell: UITableViewCell {
         }
         
         configureLayout()
-        setValues()
     }
     
-    func setValues() {
-        headerLabel.text = post?.author
-        postImage.image = UIImage(named: post!.image)
-        descriptionLabel.text = post?.description
-        likesLabel.text = "Likes: \(post!.likes)"
-        viewsLabel.text = "Views: \(post!.views)"
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func set(post: Post) {
+        headerLabel.text = post.author
+        postImage.image = UIImage(named: post.image)
+        descriptionLabel.text = post.description
+        likesLabel.text = "Likes: \(post.likes)"
+        viewsLabel.text = "Views: \(post.views)"
     }
     
     func configureLayout() {
