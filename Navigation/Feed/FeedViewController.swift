@@ -7,10 +7,6 @@
 
 import UIKit
 
-struct Post {
-    let title: String
-}
-
 class FeedViewController: ViewController {
     
     init() {
@@ -34,7 +30,7 @@ class FeedViewController: ViewController {
     }
     
     @objc func onButtonTap(_ sender: UIButton) {
-        let post = Post(title: "New post")
+        let post = Post(author: "bodasooqa", description: "Description", image: "", likes: 0, views: 0)
         let postViewController = PostViewController(post: post)
         navigationController?.pushViewController(postViewController, animated: true)
     }

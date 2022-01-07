@@ -42,7 +42,6 @@ class LoginViewController: ViewController {
     
     override func loadView() {
         super.loadView()
-        view = UIView()
         view.addSubview(loginView)
         
         loginView.putIntoSafeArea(view: view)

@@ -10,7 +10,7 @@ import UIKit
 class PostViewController: ViewController {
     
     init(post: Post) {
-        super.init(post.title)
+        super.init(post.author)
     }
     
     required init?(coder: NSCoder) {
