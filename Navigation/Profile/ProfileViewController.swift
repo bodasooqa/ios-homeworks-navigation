@@ -9,6 +9,8 @@ import UIKit
 
 class ProfileViewController: ViewController {
     
+    let imgIndexes: [Int] = Array(1...20)
+    
     private var statusText = String()
     
     var profileHeaderView: ProfileHeaderView?
@@ -21,6 +23,8 @@ class ProfileViewController: ViewController {
         Post(author: "azamat", description: "Post #2", image: "Bitcoin3", likes: 80, views: 300),
         Post(author: "bodasooqa", description: "Post #3", image: "Bitcoin4", likes: 140, views: 400)
     ]
+    
+    lazy var photosViewController: PhotosViewController = PhotosViewController("Photos", photos: imgIndexes)
     
     init() {
         super.init("Profile")
@@ -37,6 +41,7 @@ class ProfileViewController: ViewController {
         tableView.putIntoSafeArea(view: view)
         
         tableView.register(PostTableViewCell.self, forCellReuseIdentifier: PostTableViewCell.identifier)
+        tableView.register(PhotosTableViewCell.self, forCellReuseIdentifier: PhotosTableViewCell.identifier)
         tableView.register(ProfileHeaderView.self, forHeaderFooterViewReuseIdentifier: ProfileHeaderView.identifier)
         
         tableView.dataSource = self
@@ -48,9 +53,13 @@ class ProfileViewController: ViewController {
     @objc func onButtonTap(_ sender: UIButton) {
         profileHeaderView?.statusLabel.text = statusText
     }
-
+    
     @objc func onTextFieldChage(_ sender: TextField?) {
         statusText = sender?.text ?? ""
+    }
+    
+    @objc func goToPhotos(_ sender: UIButton) {
+        navigationController?.pushViewController(photosViewController, animated: true)
     }
     
 }
@@ -58,17 +67,28 @@ class ProfileViewController: ViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        posts.count
+        posts.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell else {
-            fatalError()
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PhotosTableViewCell.identifier, for: indexPath) as? PhotosTableViewCell else {
+                fatalError()
+            }
+            
+            cell.button.addTarget(self, action: #selector(goToPhotos(_:)), for: .touchUpInside)
+            cell.set(photos: imgIndexes)
+            
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PostTableViewCell.identifier, for: indexPath) as? PostTableViewCell else {
+                fatalError()
+            }
+            
+            cell.set(post: posts[indexPath.row - 1])
+            
+            return cell
         }
-        
-        cell.set(post: posts[indexPath.row])
-        
-        return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -87,11 +107,19 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
+        if indexPath.row == 0 {
+            return 160
+        } else {
+            return UITableView.automaticDimension
+        }
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        UITableView.automaticDimension
+        if indexPath.row == 0 {
+            return 160
+        } else {
+            return UITableView.automaticDimension
+        }
     }
     
 }
