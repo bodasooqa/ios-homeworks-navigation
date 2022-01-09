@@ -11,10 +11,6 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     
     static let identifier: String = "header"
     
-    static let sizeIdentifier: String = "image-size"
-    static let leftIdentifier: String = "image-left"
-    static let topIdentifier: String = "image-top"
-    
     let imageSize: CGFloat = 120
     
     var imageViewConstraints: [NSLayoutConstraint] = [] {
@@ -132,16 +128,9 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         disableImageViewConstraints()
         
         let width = imageView.widthAnchor.constraint(equalToConstant: CGFloat(size)),
-            height = imageView.heightAnchor.constraint(equalToConstant: CGFloat(size))
-        
-        width.identifier = Self.sizeIdentifier
-        height.identifier = Self.sizeIdentifier
-        
-        let left = imageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: left)
-        left.identifier = Self.leftIdentifier
-        
-        let top = imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: top)
-        top.identifier = Self.topIdentifier
+            height = imageView.heightAnchor.constraint(equalToConstant: CGFloat(size)),
+            left = imageView.leftAnchor.constraint(equalTo: self.leftAnchor, constant: left),
+            top = imageView.topAnchor.constraint(equalTo: self.topAnchor, constant: top)
         
         imageViewConstraints = [width, height, left, top]
     }
