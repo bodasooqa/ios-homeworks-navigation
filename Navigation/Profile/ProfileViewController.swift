@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import StorageService
+
 
 class ProfileViewController: ViewController {
     
@@ -17,12 +19,7 @@ class ProfileViewController: ViewController {
 
     fileprivate lazy var tableView: UITableView = UITableView(frame: .zero, style: .grouped)
     
-    fileprivate var posts: [Post] = [
-        Post(author: "bodasooqa", description: "Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 ", image: "Bitcoin1", likes: 100, views: 200),
-        Post(author: "netology", description: "Post #1", image: "Bitcoin2", likes: 30, views: 100),
-        Post(author: "azamat", description: "Post #2", image: "Bitcoin3", likes: 80, views: 300),
-        Post(author: "bodasooqa", description: "Post #3", image: "Bitcoin4", likes: 140, views: 400)
-    ]
+    fileprivate var posts: [Post] = PostsService.posts
     
     lazy var photosViewController: PhotosViewController = PhotosViewController("Photos", photos: imgIndexes)
     
@@ -42,6 +39,7 @@ class ProfileViewController: ViewController {
         if let image = UIImage(systemName: "xmark") {
             closeButton.setImage(image, for: .normal)
         }
+        
         closeButton.tintColor = .white
         closeButton.layer.zPosition = 2
         closeButton.layer.opacity = 0
@@ -59,6 +57,12 @@ class ProfileViewController: ViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        #if DEBUG
+        view.backgroundColor = .systemRed
+        #else
+        view.backgroundColor = .systemBlue
+        #endif
         
         view.addSubview(tableView)
         tableView.putIntoSafeArea(view: view)
