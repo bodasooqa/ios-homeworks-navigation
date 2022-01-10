@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import StorageService
+
 
 class ProfileViewController: ViewController {
     
@@ -17,14 +19,33 @@ class ProfileViewController: ViewController {
 
     fileprivate lazy var tableView: UITableView = UITableView(frame: .zero, style: .grouped)
     
-    fileprivate var posts: [Post] = [
-        Post(author: "bodasooqa", description: "Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 Post #0 ", image: "Bitcoin1", likes: 100, views: 200),
-        Post(author: "netology", description: "Post #1", image: "Bitcoin2", likes: 30, views: 100),
-        Post(author: "azamat", description: "Post #2", image: "Bitcoin3", likes: 80, views: 300),
-        Post(author: "bodasooqa", description: "Post #3", image: "Bitcoin4", likes: 140, views: 400)
-    ]
+    fileprivate var posts: [Post] = PostsService.posts
     
     lazy var photosViewController: PhotosViewController = PhotosViewController("Photos", photos: imgIndexes)
+    
+    lazy var backgroundView: UIView = {
+        backgroundView = UIView()
+        backgroundView.isHidden = true
+        backgroundView.backgroundColor = .black
+        backgroundView.layer.opacity = 0
+        backgroundView.layer.zPosition = 1
+        
+        return backgroundView
+    }()
+    
+    lazy var closeButton: UIButton = {
+        closeButton = UIButton(type: .custom)
+        
+        if let image = UIImage(systemName: "xmark") {
+            closeButton.setImage(image, for: .normal)
+        }
+        
+        closeButton.tintColor = .white
+        closeButton.layer.zPosition = 2
+        closeButton.layer.opacity = 0
+            
+        return closeButton
+    }()
     
     init() {
         super.init("Profile")
@@ -37,6 +58,12 @@ class ProfileViewController: ViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        #if DEBUG
+        view.backgroundColor = .systemRed
+        #else
+        view.backgroundColor = .systemBlue
+        #endif
+        
         view.addSubview(tableView)
         tableView.putIntoSafeArea(view: view)
         
@@ -48,18 +75,6 @@ class ProfileViewController: ViewController {
         tableView.delegate = self
         
         onTextFieldChage(profileHeaderView?.textField)
-    }
-
-    @objc func onButtonTap(_ sender: UIButton) {
-        profileHeaderView?.statusLabel.text = statusText
-    }
-    
-    @objc func onTextFieldChage(_ sender: TextField?) {
-        statusText = sender?.text ?? ""
-    }
-    
-    @objc func goToPhotos(_ sender: UIButton) {
-        navigationController?.pushViewController(photosViewController, animated: true)
     }
     
 }
@@ -95,9 +110,22 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderView.identifier)
 
         profileHeaderView = header as? ProfileHeaderView
-
-        profileHeaderView?.button.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
-        profileHeaderView?.textField.addTarget(self, action: #selector(onTextFieldChage(_:)), for: .editingChanged)
+        
+        guard let profileHeaderView = profileHeaderView else {
+            fatalError()
+        }
+        
+        configureBackgroundView(profileHeaderView)
+        
+        profileHeaderView.button.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
+        profileHeaderView.textField.addTarget(self, action: #selector(onTextFieldChage(_:)), for: .editingChanged)
+        
+        let gesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(onImageTap)
+        )
+        
+        profileHeaderView.imageView.addGestureRecognizer(gesture)
 
         return header
     }
@@ -119,6 +147,79 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             return 160
         } else {
             return UITableView.automaticDimension
+        }
+    }
+    
+}
+
+extension ProfileViewController {
+    
+    func configureBackgroundView(_ profileHeaderView: ProfileHeaderView) {
+        profileHeaderView.addSubview(backgroundView)
+        backgroundView.putIntoSafeArea(view: profileHeaderView, height: view.frame.height)
+        backgroundView.addSubview(closeButton)
+        closeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        closeButton.addTarget(self, action: #selector(onCloseTap), for: .touchUpInside)
+        
+        NSLayoutConstraint.activate([
+            closeButton.topAnchor.constraint(equalTo: backgroundView.topAnchor, constant: 16),
+            closeButton.trailingAnchor.constraint(equalTo: backgroundView.trailingAnchor, constant: -16),
+        ])
+    }
+    
+    @objc func onButtonTap(_ sender: UIButton) {
+        profileHeaderView?.statusLabel.text = statusText
+    }
+    
+    @objc func onTextFieldChage(_ sender: TextField?) {
+        statusText = sender?.text ?? ""
+    }
+    
+    @objc func goToPhotos(_ sender: UIButton) {
+        navigationController?.pushViewController(photosViewController, animated: true)
+    }
+    
+    @objc func onImageTap() {
+        guard let profileHeaderView = self.profileHeaderView else {
+            fatalError()
+        }
+        
+        UIView.animate(withDuration: 0.5) {
+            profileHeaderView.imageView.frame = CGRect(x: 0, y: 0, width: profileHeaderView.frame.width, height: profileHeaderView.frame.width)
+            profileHeaderView.setConstraintsForImageView(size: profileHeaderView.frame.width, left: 0, top: self.tableView.frame.height / 2 - profileHeaderView.imageView.frame.height / 2)
+            profileHeaderView.imageView.layer.cornerRadius = 0
+
+            self.backgroundView.isHidden = false
+            self.backgroundView.layer.opacity = 0.5
+        } completion: { Bool in
+            UIView.animate(withDuration: 0.3) {
+                self.closeButton.layer.opacity = 1
+            } completion: { Bool in
+                self.tableView.isScrollEnabled = false
+            }
+        }
+
+    }
+    
+    @objc func onCloseTap() {
+        guard let profileHeaderView = self.profileHeaderView else {
+            fatalError()
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.closeButton.layer.opacity = 0
+        } completion: { Bool in
+            UIView.animate(withDuration: 0.5) {
+                self.backgroundView.layer.opacity = 0
+                self.backgroundView.isHidden = true
+                
+                profileHeaderView.imageView.frame = CGRect(x: 0, y: 0, width: profileHeaderView.imageSize, height: profileHeaderView.imageSize)
+                profileHeaderView.setConstraintsForImageView(size: profileHeaderView.imageSize, left: 16, top: 16)
+                profileHeaderView.imageView.layer.cornerRadius = profileHeaderView.imageView.frame.width / 2
+            } completion: { Bool in
+                self.tableView.isScrollEnabled = true
+            }
         }
     }
     
