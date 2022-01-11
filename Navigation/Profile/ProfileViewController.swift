@@ -185,10 +185,13 @@ extension ProfileViewController {
             fatalError()
         }
         
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut]) {
             profileHeaderView.imageView.frame = CGRect(x: 0, y: 0, width: profileHeaderView.frame.width, height: profileHeaderView.frame.width)
-            profileHeaderView.setConstraintsForImageView(size: profileHeaderView.frame.width, left: 0, top: self.tableView.frame.height / 2 - profileHeaderView.imageView.frame.height / 2)
             profileHeaderView.imageView.layer.cornerRadius = 0
+            profileHeaderView.imageView.layer.borderWidth = 0
+            
+            profileHeaderView.setConstraintsForImageView(size: profileHeaderView.frame.width, left: 0, top: self.tableView.frame.height / 2 - profileHeaderView.imageView.frame.height / 2)
+            profileHeaderView.layoutIfNeeded()
 
             self.backgroundView.isHidden = false
             self.backgroundView.layer.opacity = 0.5
@@ -210,15 +213,18 @@ extension ProfileViewController {
         UIView.animate(withDuration: 0.3) {
             self.closeButton.layer.opacity = 0
         } completion: { Bool in
-            UIView.animate(withDuration: 0.5) {
+            UIView.animate(withDuration: 0.5, delay: 0, options: [.curveEaseOut]) {
                 self.backgroundView.layer.opacity = 0
-                self.backgroundView.isHidden = true
                 
                 profileHeaderView.imageView.frame = CGRect(x: 0, y: 0, width: profileHeaderView.imageSize, height: profileHeaderView.imageSize)
-                profileHeaderView.setConstraintsForImageView(size: profileHeaderView.imageSize, left: 16, top: 16)
                 profileHeaderView.imageView.layer.cornerRadius = profileHeaderView.imageView.frame.width / 2
+                profileHeaderView.imageView.layer.borderWidth = 3
+                
+                profileHeaderView.setConstraintsForImageView(size: profileHeaderView.imageSize, left: 16, top: 16)
+                profileHeaderView.layoutIfNeeded()
             } completion: { Bool in
                 self.tableView.isScrollEnabled = true
+                self.backgroundView.isHidden = true
             }
         }
     }
