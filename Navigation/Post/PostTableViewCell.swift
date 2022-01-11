@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import iOSIntPackage
 
 class PostTableViewCell: UITableViewCell {
     
@@ -78,10 +79,18 @@ class PostTableViewCell: UITableViewCell {
     
     func set(post: Post) {
         headerLabel.text = post.author
-        postImage.image = UIImage(named: post.image)
+        setImage(post.image)
         descriptionLabel.text = post.description
         likesLabel.text = "Likes: \(post.likes)"
         viewsLabel.text = "Views: \(post.views)"
+    }
+    
+    private func setImage(_ image: String) {
+        ImageProcessor().processImage(sourceImage: UIImage(named: image)!, filter: .crystallize(radius: 10)) { (img: UIImage?) in
+            if let img = img {
+                postImage.image = img
+            }
+        }
     }
     
     func configureLayout() {
