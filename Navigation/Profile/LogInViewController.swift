@@ -6,12 +6,11 @@
 //
 
 import UIKit
+import CurrentUserService
 
 class LoginViewController: ViewController {
     
     lazy var loginView: LoginView = LoginView()
-    
-    lazy var profileViewController: ProfileViewController = ProfileViewController()
     
     init() {
         super.init("Profile")
@@ -66,10 +65,13 @@ class LoginViewController: ViewController {
     }
     
     @objc func onButtonClick() {
-        navigationController?.pushViewController(profileViewController, animated: true)
-    }
-    
-    @objc func back() {
-        print("Back")
+        if let username = loginView.loginInput.text, username.count != 0 {
+            #if DEBUG
+            let userService = TestUserService()
+            #else
+            let userService = CurrentUserService()
+            #endif
+            navigationController?.pushViewController(ProfileViewController(username: username, userService: userService), animated: true)
+        }
     }
 }

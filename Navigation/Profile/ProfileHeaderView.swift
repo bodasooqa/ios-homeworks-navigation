@@ -21,7 +21,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     lazy var imageView: UIImageView = {
-        let image = UIImage(named: "Cat")!
+        let image = UIImage(named: "Guest")!
         
         imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: 0, y: 0, width: imageSize, height: imageSize)
@@ -39,7 +39,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     lazy var headerLabel: UILabel = {
         headerLabel = UILabel()
         
-        headerLabel.text = "Hipster Cat"
+        headerLabel.text = "Guest"
         headerLabel.textColor = .black
         headerLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         
