@@ -1,6 +1,6 @@
 //
 //  PostModel.swift
-//  Navigation
+//  StorageService
 //
 //  Created by t.lolaev on 09.11.2021.
 //

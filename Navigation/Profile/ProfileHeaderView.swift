@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 class ProfileHeaderView: UITableViewHeaderFooterView {
     
@@ -20,7 +21,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     }
     
     lazy var imageView: UIImageView = {
-        let image = UIImage(named: "Cat")!
+        let image = UIImage(named: "Guest")!
         
         imageView = UIImageView(image: image)
         imageView.frame = CGRect(x: 0, y: 0, width: imageSize, height: imageSize)
@@ -38,7 +39,7 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     lazy var headerLabel: UILabel = {
         headerLabel = UILabel()
         
-        headerLabel.text = "Hipster Cat"
+        headerLabel.text = "Guest"
         headerLabel.textColor = .black
         headerLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         
@@ -105,23 +106,29 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
     func configureLayout() {
         setConstraintsForImageView(size: imageSize, left: 16, top: 16)
         
-        NSLayoutConstraint.activate([
-            headerLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(imageSize + 16 * 2)),
-            headerLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 27),
-            
-            button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            button.topAnchor.constraint(equalTo: self.topAnchor, constant: CGFloat(imageSize + 50 + 16)),
-            button.widthAnchor.constraint(equalTo: self.widthAnchor, constant: -32),
-            button.heightAnchor.constraint(equalToConstant: 50),
-            
-            textField.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(imageSize + 16 * 2)),
-            textField.heightAnchor.constraint(equalToConstant: 40),
-            textField.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16),
-            textField.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -16),
-            
-            statusLabel.leftAnchor.constraint(equalTo: self.leftAnchor, constant: CGFloat(imageSize + 16 * 2)),
-            statusLabel.bottomAnchor.constraint(equalTo: button.topAnchor, constant: -68)
-        ])
+        headerLabel.snp.makeConstraints { make in
+            make.left.equalTo(imageSize + 16 * 2)
+            make.top.equalTo(27)
+        }
+        
+        button.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(imageSize + 50 + 16)
+            make.width.equalToSuperview().offset(-32)
+            make.height.equalTo(50)
+        }
+        
+        textField.snp.makeConstraints { make in
+            make.left.equalTo(imageSize + 16 * 2)
+            make.right.equalTo(safeAreaLayoutGuide).offset(-16)
+            make.height.equalTo(40)
+            make.bottom.equalTo(button.snp.top).offset(-16)
+        }
+        
+        statusLabel.snp.makeConstraints { make in
+            make.left.equalTo(imageSize + 16 * 2)
+            make.bottom.equalTo(button.snp.top).offset(-68)
+        }
     }
     
     func setConstraintsForImageView(size: CGFloat, left: CGFloat, top: CGFloat) {

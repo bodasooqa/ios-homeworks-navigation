@@ -7,9 +7,14 @@
 
 import UIKit
 import StorageService
+import CurrentUserService
 
 
 class ProfileViewController: ViewController {
+    
+    var userService: UserService?
+    
+    var username: String?
     
     let imgIndexes: [Int] = Array(1...20)
     
@@ -47,8 +52,11 @@ class ProfileViewController: ViewController {
         return closeButton
     }()
     
-    init() {
+    init(username: String, userService: UserService) {
         super.init("Profile")
+        
+        self.username = username
+        self.userService = userService
     }
 
     required init?(coder: NSCoder) {
@@ -107,15 +115,23 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderView.identifier)
-
-        profileHeaderView = header as? ProfileHeaderView
+        profileHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProfileHeaderView.identifier) as? ProfileHeaderView
         
         guard let profileHeaderView = profileHeaderView else {
             fatalError()
         }
         
         configureBackgroundView(profileHeaderView)
+        
+        if let username = username, let user = userService?.getUserByName(username) {
+            profileHeaderView.headerLabel.text = user.fullName
+            profileHeaderView.statusLabel.text = user.status
+            profileHeaderView.textField.text = user.status
+            
+            if let avatar = UIImage(named: user.avatar) {
+                profileHeaderView.imageView.image = avatar
+            }
+        }
         
         profileHeaderView.button.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
         profileHeaderView.textField.addTarget(self, action: #selector(onTextFieldChage(_:)), for: .editingChanged)
@@ -127,7 +143,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         
         profileHeaderView.imageView.addGestureRecognizer(gesture)
 
-        return header
+        return profileHeaderView
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
