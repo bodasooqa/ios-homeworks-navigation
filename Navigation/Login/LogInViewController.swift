@@ -12,8 +12,12 @@ class LoginViewController: ViewController {
     
     lazy var loginView: LoginView = LoginView()
     
-    init() {
+    private var delegate: LoginViewControllerDelegate?
+    
+    init(with delegate: LoginViewControllerDelegate) {
         super.init("Profile")
+        
+        self.delegate = delegate
     }
     
     required init?(coder: NSCoder) {
@@ -47,6 +51,12 @@ class LoginViewController: ViewController {
         loginView.button.addTarget(self, action: #selector(onButtonClick), for: .touchUpInside)
     }
     
+    func ifHasCredentials(callback: (_ username: String, _ password: String) -> Void) {
+        if let username = loginView.loginInput.text, username.count != 0, let password = loginView.passwordInput.text, password.count != 0 {
+            callback(username, password)
+        }
+    }
+    
     @objc func keyboardWillShow(notification: NSNotification) {
         let userInfo: NSDictionary = notification.userInfo! as NSDictionary
         let keyboardInfo = userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue
@@ -65,13 +75,15 @@ class LoginViewController: ViewController {
     }
     
     @objc func onButtonClick() {
-        if let username = loginView.loginInput.text, username.count != 0 {
-            #if DEBUG
-            let userService = TestUserService()
-            #else
-            let userService = CurrentUserService()
-            #endif
-            navigationController?.pushViewController(ProfileViewController(username: username, userService: userService), animated: true)
+        ifHasCredentials { username, password in
+            if let available = delegate?.checkCredentials(username: username, password: password), available {
+                #if DEBUG
+                let userService = TestUserService()
+                #else
+                let userService = CurrentUserService()
+                #endif
+                navigationController?.pushViewController(ProfileViewController(username: username, userService: userService), animated: true)
+            }
         }
     }
 }

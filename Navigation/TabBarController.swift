@@ -11,7 +11,7 @@ class TabBarController: UITabBarController {
     
     private let controllers = [
         UINavigationController(rootViewController: FeedViewController()),
-        UINavigationController(rootViewController: LoginViewController())
+        UINavigationController(rootViewController: LoginViewController(with: LoginInspector()))
     ]
     
     private let images = [
