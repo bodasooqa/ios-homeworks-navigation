@@ -9,16 +9,12 @@ import UIKit
 
 class InfoView: UIView {
     
-    lazy var button: UIButton = {
-        .createButton(title: "Show alert")
-    }()
+    public var button: UIButton?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
-        self.addSubview(button)
+        backgroundColor = .white
         
-        button.translatesAutoresizingMaskIntoConstraints = false
         configureLayout()
     }
     
@@ -26,13 +22,18 @@ class InfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureLayout() {
-        NSLayoutConstraint.activate([
-            button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            button.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            button.widthAnchor.constraint(equalToConstant: 160),
-            button.heightAnchor.constraint(equalToConstant: 40)
-        ])
+    public func configureLayout() {
+        if let button = button {
+            addSubview(button)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                button.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                button.widthAnchor.constraint(equalToConstant: 160),
+                button.heightAnchor.constraint(equalToConstant: 40)
+            ])
+        }
     }
     
 }

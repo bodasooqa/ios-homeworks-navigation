@@ -23,13 +23,7 @@ class PhotosTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var button: UIButton = {
-        let icon = UIImage(systemName: "arrow.right", withConfiguration: UIImage.SymbolConfiguration(pointSize: 30))?.withTintColor(.black, renderingMode: .alwaysOriginal)
-        button = UIButton()
-        button.setImage(icon, for: .normal)
-        
-        return button
-    }()
+    var button: UIButton?
     
     lazy var collectionView: UICollectionView = {
         let cvLayout = UICollectionViewFlowLayout()
@@ -43,7 +37,7 @@ class PhotosTableViewCell: UITableViewCell {
     }()
     
     var subViews: [UIView] {
-        [label, button, collectionView]
+        [label, collectionView]
     }
     
     var imgIndexes: [Int]?
@@ -62,16 +56,25 @@ class PhotosTableViewCell: UITableViewCell {
         configureLayout()
     }
     
+    func configureButton() {
+        if let button = button {
+            contentView.addSubview(button)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin),
+                button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin),
+                button.widthAnchor.constraint(equalToConstant: 30),
+                button.heightAnchor.constraint(equalToConstant: 30),
+            ])
+        }
+    }
+    
     func configureLayout() {
         
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin),
-            
-            button.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin),
-            button.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -margin),
-            button.widthAnchor.constraint(equalToConstant: 30),
-            button.heightAnchor.constraint(equalToConstant: 30),
             
             collectionView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: margin),
             collectionView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -margin),

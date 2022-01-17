@@ -10,7 +10,16 @@ import CurrentUserService
 
 class LoginViewController: ViewController {
     
-    lazy var loginView: LoginView = LoginView()
+    lazy var loginView: LoginView = {
+        loginView = LoginView()
+        loginView.button = CustomButton(title: "Log In", titleColor: .white, action: {
+            self.onButtonClick()
+        })
+        
+        loginView.configureButton()
+        
+        return loginView
+    }()
     
     private var delegate: LoginViewControllerDelegate?
     
@@ -48,7 +57,6 @@ class LoginViewController: ViewController {
         view.addSubview(loginView)
         
         loginView.putIntoSafeArea(view: view)
-        loginView.button.addTarget(self, action: #selector(onButtonClick), for: .touchUpInside)
     }
     
     func ifHasCredentials(callback: (_ username: String, _ password: String) -> Void) {
@@ -74,7 +82,7 @@ class LoginViewController: ViewController {
         loginView.scrollView.scrollIndicatorInsets = .zero
     }
     
-    @objc func onButtonClick() {
+    func onButtonClick() {
         ifHasCredentials { username, password in
             if let available = delegate?.checkCredentials(username: username, password: password), available {
                 #if DEBUG

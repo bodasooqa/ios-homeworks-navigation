@@ -9,10 +9,11 @@ import UIKit
 
 extension UIButton {
     
-    class func createButton(title: String) -> UIButton {
-        let button = UIButton()
-        button.setTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .normal)
+    class func createButton(title: String, action: @escaping () -> Void) -> UIButton {
+        let button = CustomButton(title: title, titleColor: .white) {
+            action()
+        }
+        
         button.backgroundColor = .systemBlue
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowRadius = 6

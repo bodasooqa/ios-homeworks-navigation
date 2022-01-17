@@ -20,9 +20,17 @@ class FeedViewController: ViewController {
     
     lazy var feedView: FeedView = {
         feedView = FeedView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        [feedView.button1, feedView.button2].forEach{
-            $0.addTarget(self, action: #selector(onButtonTap(_:)), for: .touchUpInside)
+        
+        feedView.button1 = .createButton(title: "Button 1") {
+            self.onButtonTap()
         }
+        
+        feedView.button2 = .createButton(title: "Button 2") {
+            self.onButtonTap()
+        }
+        
+        feedView.configureStackView()
+        
         return feedView
     }()
     
@@ -30,7 +38,7 @@ class FeedViewController: ViewController {
         view.addSubview(feedView)
     }
     
-    @objc func onButtonTap(_ sender: UIButton) {
+    func onButtonTap() {
         let post = Post(author: "bodasooqa", description: "Description", image: "", likes: 0, views: 0)
         let postViewController = PostViewController(post: post)
         navigationController?.pushViewController(postViewController, animated: true)

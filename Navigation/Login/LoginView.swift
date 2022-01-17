@@ -59,19 +59,10 @@ class LoginView: UIView {
         return passwordInput
     }()
     
-    lazy var button: UIButton = {
-        button = UIButton()
-        button.layer.cornerRadius = 10
-        button.setTitleColor(.white, for: .normal)
-        button.setTitle("Log In", for: .normal)
-        button.setBackgroundImage(UIImage(named: "BluePixel"), for: .normal)
-        button.clipsToBounds = true
-        
-        return button
-    }()
+    var button: UIButton?
     
     var subViews: [UIView] {
-        [logo, stackView, button]
+        [logo, stackView]
     }
     
     var formSubViews: [TextField] {
@@ -96,7 +87,26 @@ class LoginView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureLayout() {
+    public func configureButton() {
+        if let button = button {
+            button.layer.cornerRadius = 10
+            button.setBackgroundImage(UIImage(named: "BluePixel"), for: .normal)
+            button.clipsToBounds = true
+            
+            scrollView.addSubview(button)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            
+            NSLayoutConstraint.activate([
+                button.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                button.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+                button.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
+                button.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16),
+                button.heightAnchor.constraint(equalToConstant: 50),
+            ])
+        }
+    }
+    
+    private func configureLayout() {
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
@@ -119,12 +129,6 @@ class LoginView: UIView {
             stackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
             stackView.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 120),
             stackView.heightAnchor.constraint(equalToConstant: 100),
-
-            button.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            button.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            button.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
-            button.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16),
-            button.heightAnchor.constraint(equalToConstant: 50),
         ])
 
         stackView.addArrangedSubview(loginInput)
