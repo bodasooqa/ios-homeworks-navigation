@@ -9,6 +9,8 @@ import UIKit
 
 class FeedView: UIView {
     
+    static let heightIdentifier: String = "stack-view-height"
+    
     var button1: UIButton?
     
     var button2: UIButton?
@@ -23,6 +25,13 @@ class FeedView: UIView {
         textField.layer.cornerRadius = 6
         
         return textField
+    }()
+    
+    lazy var textLabel: UILabel = {
+        textLabel = UILabel()
+        textLabel.isHidden = true
+        
+        return textLabel
     }()
     
     lazy var stackView: UIStackView = {
@@ -44,11 +53,14 @@ class FeedView: UIView {
         stackView.spacing = 10
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
+        let heightConstraint = stackView.heightAnchor.constraint(equalToConstant: 220)
+        heightConstraint.identifier = Self.heightIdentifier
+        
         NSLayoutConstraint.activate([
             stackView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
             stackView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16),
             stackView.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 220),
+            heightConstraint,
         ])
         
         if let button1 = button1, let button2 = button2 {
@@ -59,6 +71,7 @@ class FeedView: UIView {
         if let checkButton = checkButton {
             stackView.addArrangedSubview(textField)
             stackView.addArrangedSubview(checkButton)
+            stackView.addArrangedSubview(textLabel)
         }
     }
     

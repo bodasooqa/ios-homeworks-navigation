@@ -7,11 +7,16 @@
 
 import UIKit
 import StorageService
+import CurrentUserService
 
 class FeedViewController: ViewController {
     
-    init() {
+    weak var checkerService: CheckerService?
+    
+    init(with checkerService: CheckerService) {
         super.init("Feed")
+        
+        self.checkerService = checkerService
     }
     
     required init?(coder: NSCoder) {
@@ -49,6 +54,19 @@ class FeedViewController: ViewController {
     }
     
     func onCheckButtonTap() {
-        print("check")
+        if let text = feedView.textField.text, text.count != 0 {
+            if let result = checkerService?.check(word: text), result {
+                feedView.textLabel.text = "Success"
+                feedView.textLabel.textColor = .systemGreen
+            } else {
+                feedView.textLabel.text = "Fail"
+                feedView.textLabel.textColor = .systemRed
+            }
+            
+            feedView.stackView.constraints.first { $0.identifier == FeedView.heightIdentifier }?.isActive = false
+            
+            feedView.stackView.heightAnchor.constraint(equalToConstant: 275).isActive = true
+            feedView.textLabel.isHidden = false
+        }
     }
 }

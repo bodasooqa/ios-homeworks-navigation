@@ -9,7 +9,7 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    private var loginFactory: LoginFactory? 
+    private var loginFactory: LoginFactory?
     
     private var controllers: [UINavigationController]?
     
@@ -24,7 +24,7 @@ class TabBarController: UITabBarController {
         loginFactory = factory
         
         controllers = [
-            UINavigationController(rootViewController: FeedViewController()),
+            UINavigationController(rootViewController: FeedViewController(with: .shared)),
             UINavigationController(rootViewController: LoginViewController(with: loginFactory!.getInspector(type: .login) as LoginViewControllerDelegate))
         ]
         
