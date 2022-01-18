@@ -34,8 +34,8 @@ class LoginView: UIView {
         return stackView
     }()
     
-    lazy var loginInput: TextField = {
-        loginInput = TextField()
+    lazy var loginInput: UITextField = {
+        loginInput = CustomTextField()
         loginInput.placeholder = "Email or phone"
         loginInput.textColor = .black
         loginInput.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -47,8 +47,8 @@ class LoginView: UIView {
         return loginInput
     }()
     
-    lazy var passwordInput: TextField = {
-        passwordInput = TextField()
+    lazy var passwordInput: UITextField = {
+        passwordInput = CustomTextField()
         passwordInput.placeholder = "Password"
         passwordInput.textColor = .black
         passwordInput.font = UIFont.systemFont(ofSize: 16, weight: .regular)
@@ -65,7 +65,7 @@ class LoginView: UIView {
         [logo, stackView]
     }
     
-    var formSubViews: [TextField] {
+    var formSubViews: [UITextField] {
         [loginInput, passwordInput]
     }
     

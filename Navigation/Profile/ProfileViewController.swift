@@ -220,7 +220,7 @@ extension ProfileViewController {
         navigationController?.pushViewController(photosViewController, animated: true)
     }
     
-    @objc func onTextFieldChage(_ sender: TextField?) {
+    @objc func onTextFieldChage(_ sender: UITextField?) {
         statusText = sender?.text ?? ""
     }
     

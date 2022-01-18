@@ -13,6 +13,18 @@ class FeedView: UIView {
     
     var button2: UIButton?
     
+    var checkButton: UIButton?
+    
+    lazy var textField: UITextField = {
+        textField = CustomTextField()
+        textField.placeholder = "Some text here"
+        textField.layer.borderWidth = 1
+        textField.layer.borderColor = UIColor.systemGray.cgColor
+        textField.layer.cornerRadius = 6
+        
+        return textField
+    }()
+    
     lazy var stackView: UIStackView = {
         UIStackView()
     }()
@@ -36,7 +48,7 @@ class FeedView: UIView {
             stackView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
             stackView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -16),
             stackView.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
-            stackView.heightAnchor.constraint(equalToConstant: 100),
+            stackView.heightAnchor.constraint(equalToConstant: 220),
         ])
         
         if let button1 = button1, let button2 = button2 {
@@ -44,6 +56,10 @@ class FeedView: UIView {
             stackView.addArrangedSubview(button2)
         }
         
+        if let checkButton = checkButton {
+            stackView.addArrangedSubview(textField)
+            stackView.addArrangedSubview(checkButton)
+        }
     }
     
 }

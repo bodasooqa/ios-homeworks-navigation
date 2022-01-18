@@ -34,7 +34,7 @@
 		C293667F2723566A005BD90D /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293667E2723566A005BD90D /* UIButtonExtension.swift */; };
 		C293668127246F44005BD90D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293668027246F44005BD90D /* ProfileHeaderView.swift */; };
 		C293668327247C7D005BD90D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293668227247C7D005BD90D /* UIViewExtension.swift */; };
-		C29366872724D684005BD90D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29366862724D684005BD90D /* TextField.swift */; };
+		C29366872724D684005BD90D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29366862724D684005BD90D /* CustomTextField.swift */; };
 		C2B1EF8D278DCC4700B810D6 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = C2B1EF8C278DCC4700B810D6 /* iOSIntPackage */; };
 		C2B1EF99278F6CCC00B810D6 /* CurrentUserService.docc in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EF98278F6CCC00B810D6 /* CurrentUserService.docc */; };
 		C2B1EF9F278F6CCC00B810D6 /* CurrentUserService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2B1EF95278F6CCC00B810D6 /* CurrentUserService.framework */; };
@@ -148,7 +148,7 @@
 		C293667E2723566A005BD90D /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		C293668027246F44005BD90D /* ProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeaderView.swift; sourceTree = "<group>"; };
 		C293668227247C7D005BD90D /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		C29366862724D684005BD90D /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		C29366862724D684005BD90D /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		C2B1EF95278F6CCC00B810D6 /* CurrentUserService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CurrentUserService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2B1EF97278F6CCC00B810D6 /* CurrentUserService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurrentUserService.h; sourceTree = "<group>"; };
 		C2B1EF98278F6CCC00B810D6 /* CurrentUserService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = CurrentUserService.docc; sourceTree = "<group>"; };
@@ -300,7 +300,6 @@
 				C293665C2721D8AE005BD90D /* LaunchScreen.storyboard */,
 				C293665F2721D8AE005BD90D /* Info.plist */,
 				C29366652721ECFD005BD90D /* TabBarController.swift */,
-				C29366862724D684005BD90D /* TextField.swift */,
 				C2B1EFB927939BF000B810D6 /* Login */,
 				C29366792723432B005BD90D /* Feed */,
 				C293667A2723433E005BD90D /* Profile */,
@@ -411,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				C2B1EFC027960B5500B810D6 /* CustomButton.swift */,
+				C29366862724D684005BD90D /* CustomTextField.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -754,7 +754,7 @@
 				C293667227231252005BD90D /* PostViewController.swift in Sources */,
 				C2936676272342F3005BD90D /* InfoViewController.swift in Sources */,
 				C2B1EFC127960B5500B810D6 /* CustomButton.swift in Sources */,
-				C29366872724D684005BD90D /* TextField.swift in Sources */,
+				C29366872724D684005BD90D /* CustomTextField.swift in Sources */,
 				C2DA438E273061C5002A3264 /* LogInViewController.swift in Sources */,
 				C293667027223873005BD90D /* FeedView.swift in Sources */,
 				C293666A2721F042005BD90D /* ProfileViewController.swift in Sources */,

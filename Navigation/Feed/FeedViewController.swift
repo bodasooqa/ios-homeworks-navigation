@@ -29,6 +29,10 @@ class FeedViewController: ViewController {
             self.onButtonTap()
         }
         
+        feedView.checkButton = .createButton(title: "Check text", action: {
+            self.onCheckButtonTap()
+        })
+        
         feedView.configureStackView()
         
         return feedView
@@ -42,5 +46,9 @@ class FeedViewController: ViewController {
         let post = Post(author: "bodasooqa", description: "Description", image: "", likes: 0, views: 0)
         let postViewController = PostViewController(post: post)
         navigationController?.pushViewController(postViewController, animated: true)
+    }
+    
+    func onCheckButtonTap() {
+        print("check")
     }
 }

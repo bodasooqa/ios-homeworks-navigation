@@ -56,8 +56,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return statusLabel
     }()
     
-    lazy var textField: TextField = {
-        textField = TextField()
+    lazy var textField: UITextField = {
+        textField = CustomTextField()
         
         textField.textColor = .black
         textField.backgroundColor = .white
