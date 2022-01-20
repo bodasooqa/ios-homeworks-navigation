@@ -6,12 +6,19 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosViewController: ViewController {
     
     let margin: CGFloat = 8
     
     var imgIndexes: [Int]?
+    
+    var images: [UIImage] {
+        imgIndexes?.map({ index in
+            UIImage(named: "Goblin-\(index)")!
+        }) ?? []
+    }
     
     lazy var collectionView: UICollectionView = {
         let cvLayout = UICollectionViewFlowLayout()
@@ -50,6 +57,15 @@ class PhotosViewController: ViewController {
         
         configureLayout()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let ipFacade: ImagePublisherFacade = ImagePublisherFacade()
+        ipFacade.subscribe(self)
+        
+        ipFacade.addImagesWithTimer(time: 1, repeat: 10, userImages: images)
+    }
  
     func configureLayout() {
         NSLayoutConstraint.activate([
@@ -80,4 +96,12 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
         return CGSize(width: width, height: width)
     }
     
+}
+
+extension PhotosViewController: ImageLibrarySubscriber {
+    
+    func receive(images: [UIImage]) {
+        print(images)
+    }
+
 }
