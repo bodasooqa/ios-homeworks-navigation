@@ -10,6 +10,8 @@ import iOSIntPackage
 
 class PhotosViewController: ViewController {
     
+    let imagePublisherFacade: ImagePublisherFacade = ImagePublisherFacade()
+    
     let margin: CGFloat = 8
     
     var imgIndexes: [Int]?
@@ -19,6 +21,8 @@ class PhotosViewController: ViewController {
             UIImage(named: "Goblin-\(index)")!
         }) ?? []
     }
+    
+    var publisherImages: [UIImage] = []
     
     lazy var collectionView: UICollectionView = {
         let cvLayout = UICollectionViewFlowLayout()
@@ -41,6 +45,10 @@ class PhotosViewController: ViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        imagePublisherFacade.removeSubscription(for: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,11 +68,9 @@ class PhotosViewController: ViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        let ipFacade: ImagePublisherFacade = ImagePublisherFacade()
-        ipFacade.subscribe(self)
-        
-        ipFacade.addImagesWithTimer(time: 1, repeat: 10, userImages: images)
+    
+        imagePublisherFacade.subscribe(self)
+        imagePublisherFacade.addImagesWithTimer(time: 1, repeat: images.count, userImages: images)
     }
  
     func configureLayout() {
@@ -82,13 +88,14 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotosCollectionViewCell.identifier, for: indexPath) as! PhotosCollectionViewCell
-        cell.set(image: "Goblin-\(imgIndexes![indexPath.row])")
+        cell.set(image: publisherImages[indexPath.row])
+
         return cell
     }
     
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        imgIndexes!.count
+        publisherImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -101,7 +108,8 @@ extension PhotosViewController: UICollectionViewDelegateFlowLayout, UICollection
 extension PhotosViewController: ImageLibrarySubscriber {
     
     func receive(images: [UIImage]) {
-        print(images)
+        publisherImages = images
+        collectionView.reloadData()
     }
 
 }
