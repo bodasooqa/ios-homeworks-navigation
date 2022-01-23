@@ -12,12 +12,12 @@ class LoginViewController: ViewController {
     
     lazy var loginView: LoginView = LoginView()
     
-    private var delegate: LoginViewControllerDelegate?
+    private var delegate: LoginViewControllerDelegate
     
     init(with delegate: LoginViewControllerDelegate) {
-        super.init("Profile")
-        
         self.delegate = delegate
+        
+        super.init("Profile")
     }
     
     required init?(coder: NSCoder) {
@@ -76,7 +76,8 @@ class LoginViewController: ViewController {
     
     @objc func onButtonClick() {
         ifHasCredentials { username, password in
-            if let available = delegate?.checkCredentials(username: username, password: password), available {
+            let available = delegate.checkCredentials(username: username, password: password)
+            if available {
                 #if DEBUG
                 let userService = TestUserService()
                 #else
