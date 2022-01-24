@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		358B1E47B0CAAF880077C72F /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA3EB3B7A58D47476799CC55 /* Pods_Navigation.framework */; };
 		A305EF9B6778F492405CAB28 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE618D9F8F95D18D7CFABB9 /* Pods_StorageService.framework */; };
+		C25CE88E279F24D000194258 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE88D279F24D000194258 /* BaseCoordinator.swift */; };
 		C2907FC6278B475200FAB716 /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = C2907FC5278B475200FAB716 /* StorageService.docc */; };
 		C2907FCC278B475300FAB716 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2907FC2278B475200FAB716 /* StorageService.framework */; };
 		C2907FD3278B475300FAB716 /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2907FD2278B475300FAB716 /* StorageServiceTests.swift */; };
@@ -123,6 +124,7 @@
 		69E862B58934D799E96021A3 /* Pods-StorageService-StorageServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A8016522F52969D748A1EFAD /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
 		B9616BFBFDA97D3D9FE186F7 /* Pods_StorageService_StorageServiceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService_StorageServiceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C25CE88D279F24D000194258 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		C2907FC2278B475200FAB716 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2907FC4278B475200FAB716 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		C2907FC5278B475200FAB716 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
@@ -243,6 +245,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		C25CE88C279F24B800194258 /* coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C25CE88D279F24D000194258 /* BaseCoordinator.swift */,
+			);
+			path = coordinators;
+			sourceTree = "<group>";
+		};
 		C2907FC3278B475200FAB716 /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
@@ -291,6 +301,7 @@
 		C29366502721D8AA005BD90D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				C25CE88C279F24B800194258 /* coordinators */,
 				C2B1EFBF27960AA800B810D6 /* components */,
 				C293667D27235657005BD90D /* extensions */,
 				C29366512721D8AA005BD90D /* AppDelegate.swift */,
@@ -764,6 +775,7 @@
 				C29366562721D8AA005BD90D /* ViewController.swift in Sources */,
 				C29366522721D8AA005BD90D /* AppDelegate.swift in Sources */,
 				C29366682721F034005BD90D /* FeedViewController.swift in Sources */,
+				C25CE88E279F24D000194258 /* BaseCoordinator.swift in Sources */,
 				C2B1EFBE2794BA0900B810D6 /* LoginFactory.swift in Sources */,
 				C293667F2723566A005BD90D /* UIButtonExtension.swift in Sources */,
 				C2DA439027306DCF002A3264 /* LoginView.swift in Sources */,
