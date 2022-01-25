@@ -7,6 +7,7 @@
 
 import UIKit
 import StorageService
+import CurrentUserService
 
 final class AppCoordinator: BaseCoordinator, Coordinator {
     
@@ -58,11 +59,21 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
             self.showPost(post)
         }
         
+        loginViewController.onButtonTap = { username, userService in
+            self.showProfile(username: username, userService: userService)
+        }
+        
         return [feedViewController, loginViewController]
     }
     
     func showPost(_ post: Post) {
         let coordinator = FeedCoordinator(navigationController: navigationController, post: post)
+        addDependency(coordinator)
+        coordinator.start()
+    }
+    
+    func showProfile(username: String, userService: UserService) {
+        let coordinator = ProfileCoordinator(navigationController: navigationController, username: username, userService: userService)
         addDependency(coordinator)
         coordinator.start()
     }

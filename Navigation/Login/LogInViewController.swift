@@ -10,10 +10,12 @@ import CurrentUserService
 
 class LoginViewController: ViewController {
     
+    var onButtonTap: ((_ username: String, _ service: UserService) -> Void)?
+    
     lazy var loginView: LoginView = {
         loginView = LoginView()
         loginView.button = CustomButton(title: "Log In", titleColor: .white, action: {
-            self.onButtonClick()
+            self.goToProfile()
         })
         
         loginView.configureButton()
@@ -82,7 +84,7 @@ class LoginViewController: ViewController {
         loginView.scrollView.scrollIndicatorInsets = .zero
     }
     
-    func onButtonClick() {
+    func goToProfile() {
         ifHasCredentials { username, password in
             if let available = delegate?.checkCredentials(username: username, password: password), available {
                 #if DEBUG
@@ -90,7 +92,7 @@ class LoginViewController: ViewController {
                 #else
                 let userService = CurrentUserService()
                 #endif
-                navigationController?.pushViewController(ProfileViewController(username: username, userService: userService), animated: true)
+                onButtonTap?(username, userService)
             }
         }
     }
