@@ -10,6 +10,8 @@ import StorageService
 
 class PostViewController: ViewController {
     
+    var onBarButtonTap: (() -> Void)?
+    
     init(post: Post) {
         super.init(post.author)
     }
@@ -29,8 +31,7 @@ class PostViewController: ViewController {
     }
     
     @objc func onBarButtonTap(_ sender: UIBarButtonItem) {
-        let infoViewController = InfoViewController("Info")
-        present(infoViewController, animated: true)
+        onBarButtonTap?()
     }
     
 }

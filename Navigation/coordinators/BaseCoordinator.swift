@@ -5,7 +5,6 @@
 //  Created by t.lolaev on 24.01.2022.
 //
 
-import Foundation
 import UIKit
 
 protocol Coordinator: AnyObject {
@@ -41,37 +40,6 @@ class BaseCoordinator {
     
     func removeAllDependencies() {
         childCoordinators.removeAll()
-    }
-    
-}
-
-final class AppCoordinator: BaseCoordinator, Coordinator {
-    
-    private let navigationController = TabBarController(factory: MyLoginFactory())
-    
-    private let scene: UIWindowScene
-    private var window: UIWindow?
-    
-    init(scene: UIWindowScene) {
-        self.scene = scene
-        super.init()
-    }
-    
-    func start() {
-        initWindow()
-    }
-    
-    private func initWindow() {
-        let window = UIWindow(windowScene: scene)
-        window.backgroundColor = .white
-        window.rootViewController = navigationController
-        window.makeKeyAndVisible()
-        
-        self.window = window
-    }
-    
-    private func startMainFlow() {
-//        navigationController.setViewControllers([UIViewController]?, animated: <#T##Bool#>)
     }
     
 }

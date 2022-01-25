@@ -13,6 +13,8 @@ class FeedViewController: ViewController {
     
     weak var checkerService: CheckerService?
     
+    var onButtonTap: ((_ post: Post) -> Void)?
+    
     init(with checkerService: CheckerService) {
         super.init("Feed")
         
@@ -27,11 +29,11 @@ class FeedViewController: ViewController {
         feedView = FeedView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         
         feedView.button1 = .createButton(title: "Button 1") {
-            self.onButtonTap()
+            self.goToPost()
         }
         
         feedView.button2 = .createButton(title: "Button 2") {
-            self.onButtonTap()
+            self.goToPost()
         }
         
         feedView.checkButton = .createButton(title: "Check text", action: {
@@ -47,10 +49,9 @@ class FeedViewController: ViewController {
         view.addSubview(feedView)
     }
     
-    func onButtonTap() {
+    func goToPost() {
         let post = Post(author: "bodasooqa", description: "Description", image: "", likes: 0, views: 0)
-        let postViewController = PostViewController(post: post)
-        navigationController?.pushViewController(postViewController, animated: true)
+        onButtonTap?(post)
     }
     
     func onCheckButtonTap() {
