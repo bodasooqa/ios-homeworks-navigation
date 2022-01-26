@@ -97,6 +97,11 @@ class LoginView: UIView {
     }
     
     func configureLayout() {
+        #if DEBUG
+        loginInput.text = "Hipster Cat"
+        passwordInput.text = "12345"
+        #endif
+        
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
