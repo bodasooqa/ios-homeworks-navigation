@@ -13,6 +13,8 @@ class FeedViewController: ViewController {
     
     weak var checkerService: CheckerService?
     
+    weak var coordinator: FeedCoordinator?
+    
     var onButtonTap: ((_ post: Post) -> Void)?
     
     init(with checkerService: CheckerService) {

@@ -17,6 +17,9 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
     private var tabBarController: TabBarController?
     private let navigationController = UINavigationController()
     
+    private var feedViewController: FeedViewController?
+    private var loginViewController: LoginViewController?
+    
     init(scene: UIWindowScene) {
         self.scene = scene
         super.init()
@@ -38,9 +41,13 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
     }
     
     private func initTabBarController() {
-        tabBarController = TabBarController(controllers: initViewControllers().map({ controller in
-            UINavigationController(rootViewController: controller)
-        }))
+        initViewControllers()
+        
+        if let feedViewController = feedViewController, let loginViewController = loginViewController {
+            tabBarController = TabBarController(controllers: [feedViewController, loginViewController].map({ controller in
+                UINavigationController(rootViewController: controller)
+            }))
+        }
         
         guard let tabBarController = tabBarController else {
             return
@@ -49,21 +56,19 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         navigationController.setViewControllers([tabBarController], animated: false)
     }
     
-    private func initViewControllers() -> [ViewController] {
+    private func initViewControllers() {
         let loginFactory = MyLoginFactory()
         
-        let feedViewController = FeedViewController(with: .shared),
-            loginViewController = LoginViewController(with: loginFactory.getInspector(type: .login) as LoginViewControllerDelegate)
+        feedViewController = FeedViewController(with: .shared)
+        loginViewController = LoginViewController(with: loginFactory.getInspector(type: .login) as LoginViewControllerDelegate)
         
-        feedViewController.onButtonTap = { post in
+        feedViewController?.onButtonTap = { post in
             self.showPost(post)
         }
         
-        loginViewController.onButtonTap = { username, userService in
+        loginViewController?.onButtonTap = { username, userService in
             self.showProfile(username: username, userService: userService)
         }
-        
-        return [feedViewController, loginViewController]
     }
     
     func showPost(_ post: Post) {
@@ -75,6 +80,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
     func showProfile(username: String, userService: UserService) {
         let coordinator = ProfileCoordinator(navigationController: navigationController, username: username, userService: userService)
         addDependency(coordinator)
+        loginViewController?.coordinator = coordinator
         coordinator.start()
     }
     

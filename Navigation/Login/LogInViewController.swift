@@ -12,6 +12,14 @@ class LoginViewController: ViewController {
     
     var onButtonTap: ((_ username: String, _ service: UserService) -> Void)?
     
+    weak var coordinator: ProfileCoordinator? {
+        didSet {
+            coordinator?.onFinish = {
+                print("Authorized")
+            }
+        }
+    }
+    
     lazy var loginView: LoginView = {
         loginView = LoginView()
         loginView.button = CustomButton(title: "Log In", titleColor: .white, action: {

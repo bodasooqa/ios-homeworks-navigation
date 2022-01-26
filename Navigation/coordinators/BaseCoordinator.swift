@@ -7,12 +7,6 @@
 
 import UIKit
 
-protocol Coordinator: AnyObject {
-    
-    func start()
-    
-}
-
 class BaseCoordinator {
     
     private(set) var childCoordinators: [Coordinator] = []
