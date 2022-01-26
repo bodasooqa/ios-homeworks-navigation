@@ -15,6 +15,10 @@
 		C25CE89427A0019100194258 /* PostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE89327A0019100194258 /* PostCoordinator.swift */; };
 		C25CE89827A0113300194258 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE89727A0113300194258 /* ProfileCoordinator.swift */; };
 		C25CE89A27A0326700194258 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE89927A0326700194258 /* Coordinator.swift */; };
+		C25CE89E27A1BA3600194258 /* ModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE89D27A1BA3600194258 /* ModuleFactory.swift */; };
+		C25CE8A027A1BAF600194258 /* Modules.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE89F27A1BAF600194258 /* Modules.swift */; };
+		C25CE8A227A1C5CA00194258 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE8A127A1C5CA00194258 /* PostViewModel.swift */; };
+		C25CE8A427A1CA5400194258 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE8A327A1CA5400194258 /* PostData.swift */; };
 		C2907FC6278B475200FAB716 /* StorageService.docc in Sources */ = {isa = PBXBuildFile; fileRef = C2907FC5278B475200FAB716 /* StorageService.docc */; };
 		C2907FCC278B475300FAB716 /* StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2907FC2278B475200FAB716 /* StorageService.framework */; };
 		C2907FD3278B475300FAB716 /* StorageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2907FD2278B475300FAB716 /* StorageServiceTests.swift */; };
@@ -135,6 +139,10 @@
 		C25CE89327A0019100194258 /* PostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCoordinator.swift; sourceTree = "<group>"; };
 		C25CE89727A0113300194258 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
 		C25CE89927A0326700194258 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		C25CE89D27A1BA3600194258 /* ModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleFactory.swift; sourceTree = "<group>"; };
+		C25CE89F27A1BAF600194258 /* Modules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modules.swift; sourceTree = "<group>"; };
+		C25CE8A127A1C5CA00194258 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
+		C25CE8A327A1CA5400194258 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		C2907FC2278B475200FAB716 /* StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2907FC4278B475200FAB716 /* StorageService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StorageService.h; sourceTree = "<group>"; };
 		C2907FC5278B475200FAB716 /* StorageService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = StorageService.docc; sourceTree = "<group>"; };
@@ -284,6 +292,23 @@
 			path = Profile;
 			sourceTree = "<group>";
 		};
+		C25CE89B27A1BA0100194258 /* factories */ = {
+			isa = PBXGroup;
+			children = (
+				C25CE89C27A1BA0D00194258 /* ModuleFactory */,
+			);
+			path = factories;
+			sourceTree = "<group>";
+		};
+		C25CE89C27A1BA0D00194258 /* ModuleFactory */ = {
+			isa = PBXGroup;
+			children = (
+				C25CE89D27A1BA3600194258 /* ModuleFactory.swift */,
+				C25CE89F27A1BAF600194258 /* Modules.swift */,
+			);
+			path = ModuleFactory;
+			sourceTree = "<group>";
+		};
 		C2907FC3278B475200FAB716 /* StorageService */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +357,7 @@
 		C29366502721D8AA005BD90D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				C25CE89B27A1BA0100194258 /* factories */,
 				C25CE88C279F24B800194258 /* coordinators */,
 				C2B1EFBF27960AA800B810D6 /* components */,
 				C293667D27235657005BD90D /* extensions */,
@@ -367,7 +393,9 @@
 				C293666D27221E55005BD90D /* ProfileView.swift */,
 				C293668027246F44005BD90D /* ProfileHeaderView.swift */,
 				C2F040252742EA72006BC67E /* PhotosViewController.swift */,
+				C2F040232741A694006BC67E /* PhotosTableViewCell.swift */,
 				C2F040272743031C006BC67E /* PhotosCollectionViewCell.swift */,
+				C2FC5113273E86410096DF28 /* PostTableViewCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -377,8 +405,8 @@
 			children = (
 				C293667127231252005BD90D /* PostViewController.swift */,
 				C29366732723125C005BD90D /* PostView.swift */,
-				C2FC5113273E86410096DF28 /* PostTableViewCell.swift */,
-				C2F040232741A694006BC67E /* PhotosTableViewCell.swift */,
+				C25CE8A127A1C5CA00194258 /* PostViewModel.swift */,
+				C25CE8A327A1CA5400194258 /* PostData.swift */,
 			);
 			path = Post;
 			sourceTree = "<group>";
@@ -796,13 +824,16 @@
 				C293667227231252005BD90D /* PostViewController.swift in Sources */,
 				C2936676272342F3005BD90D /* InfoViewController.swift in Sources */,
 				C2B1EFC127960B5500B810D6 /* CustomButton.swift in Sources */,
+				C25CE8A427A1CA5400194258 /* PostData.swift in Sources */,
 				C29366872724D684005BD90D /* CustomTextField.swift in Sources */,
+				C25CE8A227A1C5CA00194258 /* PostViewModel.swift in Sources */,
 				C25CE890279F3BEC00194258 /* AppCoordinator.swift in Sources */,
 				C2DA438E273061C5002A3264 /* LogInViewController.swift in Sources */,
 				C293667027223873005BD90D /* FeedView.swift in Sources */,
 				C293666A2721F042005BD90D /* ProfileViewController.swift in Sources */,
 				C2F040282743031C006BC67E /* PhotosCollectionViewCell.swift in Sources */,
 				C2FC5114273E86410096DF28 /* PostTableViewCell.swift in Sources */,
+				C25CE89E27A1BA3600194258 /* ModuleFactory.swift in Sources */,
 				C2936678272342FE005BD90D /* InfoView.swift in Sources */,
 				C29366562721D8AA005BD90D /* ViewController.swift in Sources */,
 				C29366522721D8AA005BD90D /* AppDelegate.swift in Sources */,
@@ -812,6 +843,7 @@
 				C293667F2723566A005BD90D /* UIButtonExtension.swift in Sources */,
 				C2DA439027306DCF002A3264 /* LoginView.swift in Sources */,
 				C25CE892279F3CAD00194258 /* FeedCoordinator.swift in Sources */,
+				C25CE8A027A1BAF600194258 /* Modules.swift in Sources */,
 				C25CE89427A0019100194258 /* PostCoordinator.swift in Sources */,
 				C29366542721D8AA005BD90D /* SceneDelegate.swift in Sources */,
 				C2F040242741A694006BC67E /* PhotosTableViewCell.swift in Sources */,

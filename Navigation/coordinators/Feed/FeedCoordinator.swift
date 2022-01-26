@@ -14,6 +14,8 @@ final class FeedCoordinator: BaseCoordinator, Coordinator {
     
     private var post: Post?
     
+    var postViewController: PostViewController?
+    
     init(navigationController: UINavigationController, post: Post) {
         self.navigationController = navigationController
         self.post = post
@@ -21,13 +23,20 @@ final class FeedCoordinator: BaseCoordinator, Coordinator {
     
     func start() {
         if let post = post {
-            let postViewController = PostViewController(post: post)
-            postViewController.onBarButtonTap = {
-                self.showInfo()
-            }
+            postViewController = ModuleFactory.shared.createModule(name: .post, post: post, coordinator: self) as? PostViewController
             
-            navigationController?.pushViewController(postViewController, animated: true)
+            if let postViewController = postViewController {
+                postViewController.onBarButtonTap = {
+                    self.showInfo()
+                }
+                
+                navigationController?.pushViewController(postViewController, animated: true)
+            }
         }
+    }
+    
+    func stop() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func showInfo() {
