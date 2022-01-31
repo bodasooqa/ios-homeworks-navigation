@@ -18,6 +18,12 @@ class ProfileViewController: ViewController {
     
     let imgIndexes: [Int] = Array(1...20)
     
+    lazy var images: [UIImage?] = {
+        imgIndexes.map { index in
+            UIImage(named: "Goblin-\(index)")
+        }
+    }()
+    
     private var statusText = String()
     
     var profileHeaderView: ProfileHeaderView?
@@ -102,7 +108,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
             })
             cell.configureButton()
             
-            cell.set(photos: imgIndexes)
+            cell.set(photos: images)
             
             return cell
         } else {

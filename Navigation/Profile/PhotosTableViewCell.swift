@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import iOSIntPackage
 
 class PhotosTableViewCell: UITableViewCell {
     
@@ -13,6 +14,8 @@ class PhotosTableViewCell: UITableViewCell {
     
     let margin: CGFloat = 12
     let spacing: CGFloat = 8
+    
+    var cgImages: [UIImage] = []
     
     lazy var label: UILabel = {
         label = UILabel()
@@ -40,7 +43,7 @@ class PhotosTableViewCell: UITableViewCell {
         [label, collectionView]
     }
     
-    var imgIndexes: [Int]?
+    var images: [UIImage]?
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -54,6 +57,25 @@ class PhotosTableViewCell: UITableViewCell {
         collectionView.dataSource = self
         
         configureLayout()
+    }
+    
+    func getCGImages() {
+        guard let images = images else { return }
+
+        ImageProcessor().processImagesOnThread(
+            sourceImages: images.compactMap { $0 },
+            filter: .crystallize(radius: 10),
+            qos: .default
+        ) { [weak self] images in
+            guard let self = self else { return }
+            self.cgImages = (images.compactMap { $0 }).map({ image in
+                UIImage(cgImage: image)
+            }).compactMap { $0 }
+            
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     func configureButton() {
@@ -71,7 +93,6 @@ class PhotosTableViewCell: UITableViewCell {
     }
     
     func configureLayout() {
-        
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: margin),
             label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: margin),
@@ -83,8 +104,9 @@ class PhotosTableViewCell: UITableViewCell {
         ])
     }
     
-    func set(photos: [Int]) {
-        imgIndexes = photos
+    func set(photos: [UIImage?]) {
+        images = photos.compactMap { $0 }
+        getCGImages()
     }
     
 }
@@ -92,12 +114,12 @@ class PhotosTableViewCell: UITableViewCell {
 extension PhotosTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        imgIndexes!.count
+        cgImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PhotoCollectionViewCell.identifier, for: indexPath) as! PhotoCollectionViewCell
-        cell.set(image: "Goblin-\(imgIndexes![indexPath.row])")
+        cell.set(image: (cgImages[indexPath.row]))
         return cell
     }
     
@@ -122,8 +144,8 @@ class PhotoCollectionViewCell: UICollectionViewCell {
         return photoImage
     }()
     
-    func set(image name: String) {
-        photoImage.image = UIImage(named: name)
+    func set(image: UIImage) {
+        photoImage.image = image
     }
     
     override func layoutSubviews() {
