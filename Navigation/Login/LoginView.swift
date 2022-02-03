@@ -59,10 +59,19 @@ class LoginView: UIView {
         return passwordInput
     }()
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.color = .systemCyan
+        
+        return activityIndicator
+    }()
+    
     var button: UIButton?
     
+    var bruteButton: UIButton?
+    
     var subViews: [UIView] {
-        [logo, stackView]
+        [logo, stackView, activityIndicator]
     }
     
     var formSubViews: [UITextField] {
@@ -87,21 +96,27 @@ class LoginView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func configureButton() {
-        if let button = button {
-            button.layer.cornerRadius = 10
-            button.setBackgroundImage(UIImage(named: "BluePixel"), for: .normal)
-            button.clipsToBounds = true
-            
-            scrollView.addSubview(button)
-            button.translatesAutoresizingMaskIntoConstraints = false
+    public func configureButtons() {
+        if let button = button, let bruteButton = bruteButton {
+            [button, bruteButton].forEach {
+                $0.layer.cornerRadius = 10
+                $0.setBackgroundImage(UIImage(named: "BluePixel"), for: .normal)
+                $0.clipsToBounds = true
+                
+                scrollView.addSubview($0)
+                $0.translatesAutoresizingMaskIntoConstraints = false
+                
+                NSLayoutConstraint.activate([
+                    $0.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
+                    $0.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
+                    $0.heightAnchor.constraint(equalToConstant: 50),
+                ])
+            }
             
             NSLayoutConstraint.activate([
-                button.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 16),
-                button.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -16),
                 button.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 16),
                 button.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: -16),
-                button.heightAnchor.constraint(equalToConstant: 50),
+                bruteButton.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 16),
             ])
         }
     }
@@ -117,6 +132,9 @@ class LoginView: UIView {
             logo.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 120),
             logo.widthAnchor.constraint(equalToConstant: CGFloat(logoSize)),
             logo.heightAnchor.constraint(equalToConstant: CGFloat(logoSize)),
+            
+            activityIndicator.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -10),
+            activityIndicator.bottomAnchor.constraint(equalTo: stackView.bottomAnchor, constant: -10)
         ])
         
         stackView.axis = .vertical

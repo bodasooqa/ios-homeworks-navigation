@@ -22,11 +22,31 @@ class LoginViewController: ViewController {
     
     lazy var loginView: LoginView = {
         loginView = LoginView()
+        
         loginView.button = CustomButton(title: "Log In", titleColor: .white, action: {
             self.goToProfile()
         })
+        loginView.bruteButton = CustomButton(title: "Get password", titleColor: .white, action: { [weak self] in
+            guard let self = self else { return }
+            
+            // Пароль длиною в 4 символа, чтоб не сильно долго ждать
+            let generatedPassword = String((0..<4).map{ _ in String().printable.randomElement()! })
+            
+            self.loginView.activityIndicator.startAnimating()
+            
+            let queue = DispatchQueue(label: "bruteForce", qos: .userInitiated)
+            
+            queue.async {
+                self.delegate?.bruteForce(passwordToUnlock: generatedPassword)
+                DispatchQueue.main.async {
+                    self.loginView.activityIndicator.stopAnimating()
+                    self.loginView.passwordInput.text = generatedPassword
+                    self.loginView.passwordInput.isSecureTextEntry = false
+                }
+            }
+        })
         
-        loginView.configureButton()
+        loginView.configureButtons()
         
         return loginView
     }()
