@@ -28,6 +28,9 @@ public class CheckerService: CheckerServiceProtocol {
         password.hash
     }
     
+    // Please use .shared static prop
+    private init() {}
+    
     public func checkCredentials(username: String, password: String) -> Bool {
         username.hash == usernameHash && password.hash == passwordHash
     }

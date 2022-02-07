@@ -26,8 +26,10 @@ class PhotosCollectionViewCell: UICollectionViewCell {
         configureLayout()
     }
     
-    func set(image name: String) {
-        photoImage.image = UIImage(named: name)
+    func set(image: UIImage?) {
+        if let image = image {
+            photoImage.image = image
+        }
     }
     
     func configureLayout() {

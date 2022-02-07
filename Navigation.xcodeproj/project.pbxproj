@@ -47,6 +47,7 @@
 		C293668127246F44005BD90D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293668027246F44005BD90D /* ProfileHeaderView.swift */; };
 		C293668327247C7D005BD90D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293668227247C7D005BD90D /* UIViewExtension.swift */; };
 		C29366872724D684005BD90D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29366862724D684005BD90D /* CustomTextField.swift */; };
+		C29366872724D684005BD90D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29366862724D684005BD90D /* TextField.swift */; };
 		C2B1EF99278F6CCC00B810D6 /* CurrentUserService.docc in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EF98278F6CCC00B810D6 /* CurrentUserService.docc */; };
 		C2B1EF9F278F6CCC00B810D6 /* CurrentUserService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2B1EF95278F6CCC00B810D6 /* CurrentUserService.framework */; };
 		C2B1EFA6278F6CCC00B810D6 /* CurrentUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA5278F6CCC00B810D6 /* CurrentUserServiceTests.swift */; };
@@ -55,6 +56,7 @@
 		C2B1EFAB278F6CCC00B810D6 /* CurrentUserService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2B1EF95278F6CCC00B810D6 /* CurrentUserService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C2B1EFB4278F6D4200B810D6 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFB3278F6D4200B810D6 /* CurrentUserService.swift */; };
 		C2B1EFB6278F728700B810D6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFB5278F728700B810D6 /* UserModel.swift */; };
+		C2CD43B22798AC3B00ABF7B2 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = C2CD43B12798AC3B00ABF7B2 /* iOSIntPackage */; };
 		C2B1EFB827938C3D00B810D6 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFB727938C3D00B810D6 /* CheckerService.swift */; };
 		C2B1EFBB27939C3D00B810D6 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFBA27939C3D00B810D6 /* LoginInspector.swift */; };
 		C2B1EFBE2794BA0900B810D6 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFBD2794BA0800B810D6 /* LoginFactory.swift */; };
