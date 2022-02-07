@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = UIWindow(windowScene: scene)
         window?.backgroundColor = .white
-        window?.rootViewController = TabBarController()
+        window?.rootViewController = TabBarController(factory: MyLoginFactory())
         window?.makeKeyAndVisible()
     }
 
