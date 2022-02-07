@@ -56,8 +56,8 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return statusLabel
     }()
     
-    lazy var textField: TextField = {
-        textField = TextField()
+    lazy var textField: UITextField = {
+        textField = CustomTextField()
         
         textField.textColor = .black
         textField.backgroundColor = .white
@@ -70,22 +70,10 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
         return textField
     }()
     
-    lazy var button: UIButton = {
-        button = UIButton()
-        button.setTitle("Set status", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowRadius = 4
-        button.layer.shadowOpacity = 0.7
-        button.layer.shadowOffset = CGSize(width: 4, height: 4)
-        button.layer.cornerRadius = 12
-
-        return button
-    }()
+    var button: UIButton?
     
     var subViews: [UIView] {
-        [imageView, headerLabel, button, statusLabel, textField]
+        [imageView, headerLabel, statusLabel, textField]
     }
     
     override init(reuseIdentifier: String?) {
@@ -95,12 +83,31 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             addSubview($0)
             $0.translatesAutoresizingMaskIntoConstraints = false
         }
-        
-        configureLayout()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureButton() {
+        if let button = button {
+            button.backgroundColor = .systemBlue
+            button.layer.shadowColor = UIColor.black.cgColor
+            button.layer.shadowRadius = 4
+            button.layer.shadowOpacity = 0.7
+            button.layer.shadowOffset = CGSize(width: 4, height: 4)
+            button.layer.cornerRadius = 12
+            
+            addSubview(button)
+            button.translatesAutoresizingMaskIntoConstraints = false
+            
+            button.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(imageSize + 50 + 16)
+                make.width.equalToSuperview().offset(-32)
+                make.height.equalTo(50)
+            }
+        }
     }
     
     func configureLayout() {
@@ -111,23 +118,16 @@ class ProfileHeaderView: UITableViewHeaderFooterView {
             make.top.equalTo(27)
         }
         
-        button.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(imageSize + 50 + 16)
-            make.width.equalToSuperview().offset(-32)
-            make.height.equalTo(50)
-        }
-        
         textField.snp.makeConstraints { make in
             make.left.equalTo(imageSize + 16 * 2)
             make.right.equalTo(safeAreaLayoutGuide).offset(-16)
             make.height.equalTo(40)
-            make.bottom.equalTo(button.snp.top).offset(-16)
+            make.bottom.equalTo(button!.snp.top).offset(-16)
         }
         
         statusLabel.snp.makeConstraints { make in
             make.left.equalTo(imageSize + 16 * 2)
-            make.bottom.equalTo(button.snp.top).offset(-68)
+            make.bottom.equalTo(button!.snp.top).offset(-68)
         }
     }
     

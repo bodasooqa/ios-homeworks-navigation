@@ -10,7 +10,12 @@ import StorageService
 
 class PostViewController: ViewController {
     
-    init(post: Post) {
+    var onBarButtonTap: (() -> Void)?
+    
+    var viewModel: PostViewModelProtocol
+    
+    init(viewModel: PostViewModelProtocol, post: Post) {
+        self.viewModel = viewModel
         super.init(post.author)
     }
     
@@ -18,19 +23,32 @@ class PostViewController: ViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    lazy var postView: PostView = {
-        postView = PostView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
-        return postView
-    }()
+    lazy var postView: PostView = PostView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
     
     override func viewDidLoad() {
         view.addSubview(postView)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(onBarButtonTap(_:)))
+        
+        configureNavigationBar()
+        fetchData()
     }
     
-    @objc func onBarButtonTap(_ sender: UIBarButtonItem) {
-        let infoViewController = InfoViewController("Info")
-        present(infoViewController, animated: true)
+    private func configureNavigationBar() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Info", style: .plain, target: self, action: #selector(onRightBarButtonTap(_:)))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(onLeftBarButtonTap(_:)))
+    }
+    
+    private func fetchData() {
+        viewModel.fetchData { data in
+            self.postView.set(postData: data)
+        }
+    }
+    
+    @objc func onRightBarButtonTap(_ sender: UIBarButtonItem) {
+        onBarButtonTap?()
+    }
+    
+    @objc func onLeftBarButtonTap(_ sender: UIBarButtonItem) {
+        viewModel.back()
     }
     
 }

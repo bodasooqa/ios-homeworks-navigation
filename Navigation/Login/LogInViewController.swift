@@ -10,7 +10,46 @@ import CurrentUserService
 
 class LoginViewController: ViewController {
     
-    lazy var loginView: LoginView = LoginView()
+    var onButtonTap: ((_ username: String, _ service: UserService) -> Void)?
+    
+    weak var coordinator: ProfileCoordinator? {
+        didSet {
+            coordinator?.onFinish = {
+                print("Authorized")
+            }
+        }
+    }
+    
+    lazy var loginView: LoginView = {
+        loginView = LoginView()
+        
+        loginView.button = CustomButton(title: "Log In", titleColor: .white, action: {
+            self.goToProfile()
+        })
+        loginView.bruteButton = CustomButton(title: "Get password", titleColor: .white, action: { [weak self] in
+            guard let self = self else { return }
+            
+            // Пароль длиною в 4 символа, чтоб не сильно долго ждать
+            let generatedPassword = String((0..<4).map{ _ in String().printable.randomElement()! })
+            
+            self.loginView.activityIndicator.startAnimating()
+            
+            let queue = DispatchQueue(label: "bruteForce", qos: .userInitiated)
+            
+            queue.async {
+                self.delegate?.bruteForce(passwordToUnlock: generatedPassword)
+                DispatchQueue.main.async {
+                    self.loginView.activityIndicator.stopAnimating()
+                    self.loginView.passwordInput.text = generatedPassword
+                    self.loginView.passwordInput.isSecureTextEntry = false
+                }
+            }
+        })
+        
+        loginView.configureButtons()
+        
+        return loginView
+    }()
     
     private var delegate: LoginViewControllerDelegate
     
@@ -48,7 +87,6 @@ class LoginViewController: ViewController {
         view.addSubview(loginView)
         
         loginView.putIntoSafeArea(view: view)
-        loginView.button.addTarget(self, action: #selector(onButtonClick), for: .touchUpInside)
     }
     
     func ifHasCredentials(callback: (_ username: String, _ password: String) -> Void) {
@@ -74,7 +112,7 @@ class LoginViewController: ViewController {
         loginView.scrollView.scrollIndicatorInsets = .zero
     }
     
-    @objc func onButtonClick() {
+    func goToProfile() {
         ifHasCredentials { username, password in
             let available = delegate.checkCredentials(username: username, password: password)
             if available {
@@ -83,7 +121,7 @@ class LoginViewController: ViewController {
                 #else
                 let userService = CurrentUserService()
                 #endif
-                navigationController?.pushViewController(ProfileViewController(username: username, userService: userService), animated: true)
+                onButtonTap?(username, userService)
             }
         }
     }
