@@ -9,18 +9,24 @@ import UIKit
 
 class TabBarController: UITabBarController {
     
-    private let controllers = [
-        UINavigationController(rootViewController: FeedViewController()),
-        UINavigationController(rootViewController: LoginViewController())
-    ]
+    private var loginFactory: LoginFactory? 
+    
+    private var controllers: [UINavigationController]?
     
     private let images = [
         UIImage(systemName: "house"),
         UIImage(systemName: "person.circle")
     ]
     
-    init() {
+    init(factory: LoginFactory) {
         super.init(nibName: nil, bundle: nil)
+        
+        loginFactory = factory
+        
+        controllers = [
+            UINavigationController(rootViewController: FeedViewController()),
+            UINavigationController(rootViewController: LoginViewController(with: loginFactory!.getInspector(type: .login) as LoginViewControllerDelegate))
+        ]
         
         setViewControllers(controllers, animated: false)
         tabBar.tintColor = UIColor(named: "MainColor")
