@@ -12,8 +12,8 @@ class PostView: UIView {
     
     lazy var descriptionLabel: UILabel = {
         descriptionLabel = UILabel()
-        descriptionLabel.isHidden = true
         descriptionLabel.numberOfLines = 0
+        descriptionLabel.text = "\(PostViewModel.initialCounter)"
         descriptionLabel.textAlignment = .center
         
         return descriptionLabel
@@ -52,7 +52,6 @@ class PostView: UIView {
         }
         
         descriptionLabel.text = postData.description
-        descriptionLabel.isHidden = false
     }
 
     private func configureLayout() {
