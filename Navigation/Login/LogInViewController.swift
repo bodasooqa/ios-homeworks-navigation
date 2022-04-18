@@ -37,7 +37,7 @@ class LoginViewController: ViewController {
             let queue = DispatchQueue(label: "bruteForce", qos: .userInitiated)
             
             queue.async {
-                self.delegate?.bruteForce(passwordToUnlock: generatedPassword)
+                self.delegate.bruteForce(passwordToUnlock: generatedPassword)
                 DispatchQueue.main.async {
                     self.loginView.activityIndicator.stopAnimating()
                     self.loginView.passwordInput.text = generatedPassword

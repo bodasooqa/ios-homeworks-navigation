@@ -17,6 +17,7 @@ class PostViewController: ViewController {
     init(viewModel: PostViewModelProtocol, post: Post) {
         self.viewModel = viewModel
         super.init(post.author)
+        self.viewModel.setTimeValue = setTimeValue
     }
     
     required init?(coder: NSCoder) {
@@ -41,6 +42,10 @@ class PostViewController: ViewController {
         viewModel.fetchData { data in
             self.postView.set(postData: data)
         }
+    }
+    
+    private func setTimeValue(_ value: Int) {
+        postView.descriptionLabel.text = "\(value)"
     }
     
     @objc func onRightBarButtonTap(_ sender: UIBarButtonItem) {
