@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         appConfiguration = .allCases.randomElement()
-        NetworkService.runTask(with: appConfiguration!)
+//        NetworkService.runTask(with: appConfiguration!)
         return true
     }
 

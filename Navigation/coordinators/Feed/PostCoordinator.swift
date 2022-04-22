@@ -16,7 +16,7 @@ final class PostCoordinator: Coordinator {
     }
     
     func start() {
-        let infoViewController = InfoViewController("Info")
+        let infoViewController = InfoViewController(with: InfoViewControllerDataset())
         navigationController?.present(infoViewController, animated: true)
     }
     

@@ -11,6 +11,11 @@ class InfoView: UIView {
     
     public var button: UIButton?
     
+    lazy var label: UILabel = {
+        label = UILabel()
+        return label
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -25,13 +30,18 @@ class InfoView: UIView {
     public func configureLayout() {
         if let button = button {
             addSubview(button)
+            addSubview(label)
             button.translatesAutoresizingMaskIntoConstraints = false
+            label.translatesAutoresizingMaskIntoConstraints = false
             
             NSLayoutConstraint.activate([
                 button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 button.centerYAnchor.constraint(equalTo: self.centerYAnchor),
                 button.widthAnchor.constraint(equalToConstant: 160),
-                button.heightAnchor.constraint(equalToConstant: 40)
+                button.heightAnchor.constraint(equalToConstant: 40),
+                
+                label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 20)
             ])
         }
     }

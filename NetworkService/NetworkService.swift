@@ -13,6 +13,8 @@ public struct NetworkService {
         case planets = "https://swapi.dev/api/planets/5"
     }
     
+    public typealias Todo = [String: Any]
+    
     public static func runTask(with config: AppConfiguration) {
         if let url = URL(string: config.rawValue) {
             let session = URLSession(configuration: .default)
@@ -31,6 +33,23 @@ public struct NetworkService {
                 }
             }
             task.resume()
+        }
+    }
+    
+    public static func getTodo(callback: @escaping (String) -> Void) {
+        if let url = URL(string: "https://jsonplaceholder.typicode.com/todos/1") {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let unwrappedData = data {
+                    do {
+                        let serializedData = try JSONSerialization.jsonObject(with: unwrappedData, options: [])
+                        if let dict = serializedData as? Todo, let title = dict["title"] as? String {
+                            callback(title)
+                        }
+                    } catch let error {
+                        print(error)
+                    }
+                }
+            }.resume()
         }
     }
     

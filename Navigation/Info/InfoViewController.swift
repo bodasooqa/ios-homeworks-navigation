@@ -9,6 +9,8 @@ import UIKit
 
 class InfoViewController: ViewController {
     
+    let delegate: InfoViewControllerDelegate
+    
     lazy var infoView: InfoView = {
         infoView = InfoView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         infoView.button = .createButton(title: "Show alert") {
@@ -20,8 +22,33 @@ class InfoViewController: ViewController {
         return infoView
     }()
     
+    init(with delegate: InfoViewControllerDelegate) {
+        self.delegate = delegate
+        super.init("String")
+        
+        setData()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         view.addSubview(infoView)
+    }
+    
+    func setData() {
+        let queue = DispatchQueue(label: "get-data", qos: .userInitiated)
+        queue.async {
+            self.delegate.getData { title in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    
+                    self.infoView.label.text = title
+                }
+            }
+        }
+        
     }
     
     func onButtonTap() {
