@@ -8,13 +8,19 @@
 import NetworkService
 
 protocol InfoViewControllerDelegate {
-    func getData(callback: @escaping (String) -> Void) -> Void
+    func getTodo(callback: @escaping (String) -> Void) -> Void
+    func getPlanet(callback: @escaping (String) -> Void) -> Void
 }
 
 class InfoViewControllerDataset: InfoViewControllerDelegate {
     
-    func getData(callback: @escaping (String) -> Void) {
+    func getTodo(callback: @escaping (String) -> Void) {
         NetworkService.getTodo(callback: callback)
+    }
+    
+    
+    func getPlanet(callback: @escaping (String) -> Void) {
+        NetworkService.getPlanet(callback: callback)
     }
     
 }

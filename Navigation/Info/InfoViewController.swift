@@ -40,11 +40,21 @@ class InfoViewController: ViewController {
     func setData() {
         let queue = DispatchQueue(label: "get-data", qos: .userInitiated)
         queue.async {
-            self.delegate.getData { title in
+            self.delegate.getTodo { title in
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     
                     self.infoView.label.text = title
+                }
+            }
+        }
+        
+        queue.async {
+            self.delegate.getPlanet { orbitalPeriod in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    
+                    self.infoView.planetTitleLabel.text = "Orbital period of \(orbitalPeriod)"
                 }
             }
         }

@@ -16,6 +16,15 @@ class InfoView: UIView {
         return label
     }()
     
+    lazy var planetTitleLabel: UILabel = {
+        planetTitleLabel = UILabel()
+        return planetTitleLabel
+    }()
+    
+    var subViews: [UIView] {
+        [label, planetTitleLabel]
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
@@ -30,9 +39,12 @@ class InfoView: UIView {
     public func configureLayout() {
         if let button = button {
             addSubview(button)
-            addSubview(label)
             button.translatesAutoresizingMaskIntoConstraints = false
-            label.translatesAutoresizingMaskIntoConstraints = false
+            
+            subViews.forEach {
+                addSubview($0)
+                $0.translatesAutoresizingMaskIntoConstraints = false
+            }
             
             NSLayoutConstraint.activate([
                 button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
@@ -41,7 +53,10 @@ class InfoView: UIView {
                 button.heightAnchor.constraint(equalToConstant: 40),
                 
                 label.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 20)
+                label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 20),
+                
+                planetTitleLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                planetTitleLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
             ])
         }
     }
