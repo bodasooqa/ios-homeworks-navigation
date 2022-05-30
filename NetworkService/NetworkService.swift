@@ -7,12 +7,18 @@
 
 struct Planet: Decodable {
     let name: String
+    let residents: [String]?
     let orbitalPeriod: String
     
     enum CodingKeys: String, CodingKey {
         case name
+        case residents
         case orbitalPeriod = "orbital_period"
     }
+}
+
+struct Resident: Decodable {
+    let name: String
 }
 
 struct Todo {
@@ -23,13 +29,13 @@ struct Todo {
     }
 }
 
+public enum AppConfiguration: String, CaseIterable {
+    case people = "https://swapi.dev/api/people/8"
+    case starships = "https://swapi.dev/api/starships/3"
+    case planets = "https://swapi.dev/api/planets/5"
+}
+
 public struct NetworkService {
-    
-    public enum AppConfiguration: String, CaseIterable {
-        case people = "https://swapi.dev/api/people/8"
-        case starships = "https://swapi.dev/api/starships/3"
-        case planets = "https://swapi.dev/api/planets/5"
-    }
     
     public static func runTask(with config: AppConfiguration) {
         if let url = URL(string: config.rawValue) {
@@ -76,10 +82,17 @@ public struct NetworkService {
         }
     }
     
-    public static func getPlanet(callback: @escaping (String) -> Void) {
+    public static func getPlanet(callback: @escaping (String, [String]?) -> Void) {
         Self.makeRequest(url: "https://swapi.dev/api/planets/1/") { data in
             let decodedData = try JSONDecoder().decode(Planet.self, from: data)
-            callback("\(decodedData.name) — \(decodedData.orbitalPeriod)")
+            callback("\(decodedData.name) — \(decodedData.orbitalPeriod)", decodedData.residents)
+        }
+    }
+    
+    public static func getResident(residentUrl: String, callback: @escaping (String) -> Void) {
+        Self.makeRequest(url: residentUrl) { data in
+            let decodedData = try JSONDecoder().decode(Resident.self, from: data)
+            callback(decodedData.name)
         }
     }
     

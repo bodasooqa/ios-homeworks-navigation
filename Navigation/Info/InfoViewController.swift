@@ -11,6 +11,8 @@ class InfoViewController: ViewController {
     
     let delegate: InfoViewControllerDelegate
     
+    lazy var tableView = UITableView(frame: .zero, style: .grouped)
+    
     lazy var infoView: InfoView = {
         infoView = InfoView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height))
         infoView.button = .createButton(title: "Show alert") {
@@ -21,6 +23,8 @@ class InfoViewController: ViewController {
         
         return infoView
     }()
+    
+    var residents: [String] = []
     
     init(with delegate: InfoViewControllerDelegate) {
         self.delegate = delegate
@@ -35,6 +39,16 @@ class InfoViewController: ViewController {
     
     override func viewDidLoad() {
         view.addSubview(infoView)
+        
+        configureTableView()
+    }
+    
+    func configureTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "resident")
+        
+        infoView.configureTableView(tableView)
     }
     
     func setData() {
@@ -50,11 +64,15 @@ class InfoViewController: ViewController {
         }
         
         queue.async {
-            self.delegate.getPlanet { orbitalPeriod in
+            self.delegate.getPlanet { orbitalPeriod, residents in
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     
                     self.infoView.planetTitleLabel.text = "Orbital period of \(orbitalPeriod)"
+                    
+                    if let residents = residents {
+                        self.setResidents(residents)
+                    }
                 }
             }
         }
@@ -69,5 +87,38 @@ class InfoViewController: ViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
+    func setResidents(_ residents: [String]) {
+        let queue = DispatchQueue(label: "get-resident-data", qos: .userInitiated)
+        
+        residents.forEach { resident in
+            queue.async {
+                self.delegate.getResident(residentUrl: resident) { residentName in
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        guard let self = self else { return }
+                        
+                        self.residents.append(residentName)
+                        self.tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
 
+}
+
+extension InfoViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        residents.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "resident", for: indexPath)
+        cell.textLabel?.text = residents[indexPath.row]
+        
+        return cell
+    }
+    
 }

@@ -48,7 +48,7 @@ class InfoView: UIView {
             
             NSLayoutConstraint.activate([
                 button.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                button.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+                button.topAnchor.constraint(equalTo: self.topAnchor, constant: 100),
                 button.widthAnchor.constraint(equalToConstant: 160),
                 button.heightAnchor.constraint(equalToConstant: 40),
                 
@@ -59,6 +59,18 @@ class InfoView: UIView {
                 planetTitleLabel.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 10),
             ])
         }
+    }
+    
+    public func configureTableView(_ tableView: UITableView) {
+        addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            tableView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: self.rightAnchor),
+            tableView.topAnchor.constraint(equalTo: planetTitleLabel.bottomAnchor, constant: 10),
+            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10)
+        ])
     }
     
 }
