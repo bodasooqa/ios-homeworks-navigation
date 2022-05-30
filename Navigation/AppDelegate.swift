@@ -11,7 +11,7 @@ import NetworkService
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    public var appConfiguration: NetworkService.AppConfiguration? = nil;
+    public var appConfiguration: AppConfiguration?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         appConfiguration = .allCases.randomElement()
