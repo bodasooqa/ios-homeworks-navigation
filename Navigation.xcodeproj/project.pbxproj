@@ -9,6 +9,13 @@
 /* Begin PBXBuildFile section */
 		358B1E47B0CAAF880077C72F /* Pods_Navigation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA3EB3B7A58D47476799CC55 /* Pods_Navigation.framework */; };
 		A305EF9B6778F492405CAB28 /* Pods_StorageService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE618D9F8F95D18D7CFABB9 /* Pods_StorageService.framework */; };
+		C241C28E280DE7D700A89890 /* NetworkService.docc in Sources */ = {isa = PBXBuildFile; fileRef = C241C28D280DE7D700A89890 /* NetworkService.docc */; };
+		C241C294280DE7D700A89890 /* NetworkService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C241C28A280DE7D700A89890 /* NetworkService.framework */; };
+		C241C29B280DE7D700A89890 /* NetworkServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C241C29A280DE7D700A89890 /* NetworkServiceTests.swift */; };
+		C241C29C280DE7D700A89890 /* NetworkService.h in Headers */ = {isa = PBXBuildFile; fileRef = C241C28C280DE7D700A89890 /* NetworkService.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C241C29F280DE7D700A89890 /* NetworkService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C241C28A280DE7D700A89890 /* NetworkService.framework */; };
+		C241C2A0280DE7D700A89890 /* NetworkService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C241C28A280DE7D700A89890 /* NetworkService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		C241C2A8280DE81A00A89890 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C241C2A7280DE81A00A89890 /* NetworkService.swift */; };
 		C25CE88E279F24D000194258 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE88D279F24D000194258 /* BaseCoordinator.swift */; };
 		C25CE890279F3BEC00194258 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE88F279F3BEC00194258 /* AppCoordinator.swift */; };
 		C25CE892279F3CAD00194258 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE891279F3CAD00194258 /* FeedCoordinator.swift */; };
@@ -47,7 +54,6 @@
 		C293668127246F44005BD90D /* ProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293668027246F44005BD90D /* ProfileHeaderView.swift */; };
 		C293668327247C7D005BD90D /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C293668227247C7D005BD90D /* UIViewExtension.swift */; };
 		C29366872724D684005BD90D /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29366862724D684005BD90D /* CustomTextField.swift */; };
-		C29366872724D684005BD90D /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29366862724D684005BD90D /* TextField.swift */; };
 		C2B1EF99278F6CCC00B810D6 /* CurrentUserService.docc in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EF98278F6CCC00B810D6 /* CurrentUserService.docc */; };
 		C2B1EF9F278F6CCC00B810D6 /* CurrentUserService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2B1EF95278F6CCC00B810D6 /* CurrentUserService.framework */; };
 		C2B1EFA6278F6CCC00B810D6 /* CurrentUserServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFA5278F6CCC00B810D6 /* CurrentUserServiceTests.swift */; };
@@ -56,7 +62,6 @@
 		C2B1EFAB278F6CCC00B810D6 /* CurrentUserService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C2B1EF95278F6CCC00B810D6 /* CurrentUserService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C2B1EFB4278F6D4200B810D6 /* CurrentUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFB3278F6D4200B810D6 /* CurrentUserService.swift */; };
 		C2B1EFB6278F728700B810D6 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFB5278F728700B810D6 /* UserModel.swift */; };
-		C2CD43B22798AC3B00ABF7B2 /* iOSIntPackage in Frameworks */ = {isa = PBXBuildFile; productRef = C2CD43B12798AC3B00ABF7B2 /* iOSIntPackage */; };
 		C2B1EFB827938C3D00B810D6 /* CheckerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFB727938C3D00B810D6 /* CheckerService.swift */; };
 		C2B1EFBB27939C3D00B810D6 /* LoginInspector.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFBA27939C3D00B810D6 /* LoginInspector.swift */; };
 		C2B1EFBE2794BA0900B810D6 /* LoginFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B1EFBD2794BA0800B810D6 /* LoginFactory.swift */; };
@@ -71,6 +76,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		C241C295280DE7D700A89890 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C29366462721D8AA005BD90D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C241C289280DE7D700A89890;
+			remoteInfo = NetworkService;
+		};
+		C241C297280DE7D700A89890 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C29366462721D8AA005BD90D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C293664D2721D8AA005BD90D;
+			remoteInfo = Navigation;
+		};
+		C241C29D280DE7D700A89890 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C29366462721D8AA005BD90D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C241C289280DE7D700A89890;
+			remoteInfo = NetworkService;
+		};
 		C2907FCD278B475300FAB716 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C29366462721D8AA005BD90D /* Project object */;
@@ -122,6 +148,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				C241C2A0280DE7D700A89890 /* NetworkService.framework in Embed Frameworks */,
 				C2907FD8278B475300FAB716 /* StorageService.framework in Embed Frameworks */,
 				C2B1EFAB278F6CCC00B810D6 /* CurrentUserService.framework in Embed Frameworks */,
 			);
@@ -136,6 +163,12 @@
 		69E862B58934D799E96021A3 /* Pods-StorageService-StorageServiceTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService-StorageServiceTests.debug.xcconfig"; path = "Target Support Files/Pods-StorageService-StorageServiceTests/Pods-StorageService-StorageServiceTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A8016522F52969D748A1EFAD /* Pods-Navigation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.debug.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.debug.xcconfig"; sourceTree = "<group>"; };
 		B9616BFBFDA97D3D9FE186F7 /* Pods_StorageService_StorageServiceTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService_StorageServiceTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C241C28A280DE7D700A89890 /* NetworkService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C241C28C280DE7D700A89890 /* NetworkService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkService.h; sourceTree = "<group>"; };
+		C241C28D280DE7D700A89890 /* NetworkService.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = NetworkService.docc; sourceTree = "<group>"; };
+		C241C293280DE7D700A89890 /* NetworkServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C241C29A280DE7D700A89890 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
+		C241C2A7280DE81A00A89890 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C25CE88D279F24D000194258 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		C25CE88F279F3BEC00194258 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C25CE891279F3CAD00194258 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
@@ -198,6 +231,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C241C287280DE7D700A89890 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C241C290280DE7D700A89890 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C241C294280DE7D700A89890 /* NetworkService.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C2907FBF278B475200FAB716 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -221,6 +269,7 @@
 			files = (
 				C2907FD7278B475300FAB716 /* StorageService.framework in Frameworks */,
 				358B1E47B0CAAF880077C72F /* Pods_Navigation.framework in Frameworks */,
+				C241C29F280DE7D700A89890 /* NetworkService.framework in Frameworks */,
 				C2B1EFAA278F6CCC00B810D6 /* CurrentUserService.framework in Frameworks */,
 				C25CE8A727A80BBC00194258 /* iOSIntPackage in Frameworks */,
 			);
@@ -265,6 +314,24 @@
 				B9616BFBFDA97D3D9FE186F7 /* Pods_StorageService_StorageServiceTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C241C28B280DE7D700A89890 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				C241C28C280DE7D700A89890 /* NetworkService.h */,
+				C241C28D280DE7D700A89890 /* NetworkService.docc */,
+				C241C2A7280DE81A00A89890 /* NetworkService.swift */,
+			);
+			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		C241C299280DE7D700A89890 /* NetworkServiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				C241C29A280DE7D700A89890 /* NetworkServiceTests.swift */,
+			);
+			path = NetworkServiceTests;
 			sourceTree = "<group>";
 		};
 		C25CE88C279F24B800194258 /* coordinators */ = {
@@ -340,6 +407,8 @@
 				C2907FD1278B475300FAB716 /* StorageServiceTests */,
 				C2B1EF96278F6CCC00B810D6 /* CurrentUserService */,
 				C2B1EFA4278F6CCC00B810D6 /* CurrentUserServiceTests */,
+				C241C28B280DE7D700A89890 /* NetworkService */,
+				C241C299280DE7D700A89890 /* NetworkServiceTests */,
 				C293664F2721D8AA005BD90D /* Products */,
 				90A172DD57A55541B2424A68 /* Pods */,
 				BE9CDE64341D8D89B2CA1661 /* Frameworks */,
@@ -354,6 +423,8 @@
 				C2907FCB278B475300FAB716 /* StorageServiceTests.xctest */,
 				C2B1EF95278F6CCC00B810D6 /* CurrentUserService.framework */,
 				C2B1EF9E278F6CCC00B810D6 /* CurrentUserServiceTests.xctest */,
+				C241C28A280DE7D700A89890 /* NetworkService.framework */,
+				C241C293280DE7D700A89890 /* NetworkServiceTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -501,6 +572,14 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		C241C285280DE7D700A89890 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C241C29C280DE7D700A89890 /* NetworkService.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C2907FBD278B475200FAB716 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -520,6 +599,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		C241C289280DE7D700A89890 /* NetworkService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C241C2A5280DE7D700A89890 /* Build configuration list for PBXNativeTarget "NetworkService" */;
+			buildPhases = (
+				C241C285280DE7D700A89890 /* Headers */,
+				C241C286280DE7D700A89890 /* Sources */,
+				C241C287280DE7D700A89890 /* Frameworks */,
+				C241C288280DE7D700A89890 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NetworkService;
+			productName = NetworkService;
+			productReference = C241C28A280DE7D700A89890 /* NetworkService.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C241C292280DE7D700A89890 /* NetworkServiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C241C2A6280DE7D700A89890 /* Build configuration list for PBXNativeTarget "NetworkServiceTests" */;
+			buildPhases = (
+				C241C28F280DE7D700A89890 /* Sources */,
+				C241C290280DE7D700A89890 /* Frameworks */,
+				C241C291280DE7D700A89890 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C241C296280DE7D700A89890 /* PBXTargetDependency */,
+				C241C298280DE7D700A89890 /* PBXTargetDependency */,
+			);
+			name = NetworkServiceTests;
+			productName = NetworkServiceTests;
+			productReference = C241C293280DE7D700A89890 /* NetworkServiceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		C2907FC1278B475200FAB716 /* StorageService */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C2907FDE278B475300FAB716 /* Build configuration list for PBXNativeTarget "StorageService" */;
@@ -575,6 +691,7 @@
 			dependencies = (
 				C2907FD6278B475300FAB716 /* PBXTargetDependency */,
 				C2B1EFA9278F6CCC00B810D6 /* PBXTargetDependency */,
+				C241C29E280DE7D700A89890 /* PBXTargetDependency */,
 			);
 			name = Navigation;
 			packageProductDependencies = (
@@ -631,6 +748,13 @@
 				LastSwiftUpdateCheck = 1320;
 				LastUpgradeCheck = 1300;
 				TargetAttributes = {
+					C241C289280DE7D700A89890 = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+					C241C292280DE7D700A89890 = {
+						CreatedOnToolsVersion = 13.2.1;
+						TestTargetID = C293664D2721D8AA005BD90D;
+					};
 					C2907FC1278B475200FAB716 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -671,11 +795,27 @@
 				C2907FCA278B475300FAB716 /* StorageServiceTests */,
 				C2B1EF94278F6CCC00B810D6 /* CurrentUserService */,
 				C2B1EF9D278F6CCC00B810D6 /* CurrentUserServiceTests */,
+				C241C289280DE7D700A89890 /* NetworkService */,
+				C241C292280DE7D700A89890 /* NetworkServiceTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		C241C288280DE7D700A89890 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C241C291280DE7D700A89890 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C2907FC0278B475200FAB716 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -802,6 +942,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C241C286280DE7D700A89890 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C241C2A8280DE81A00A89890 /* NetworkService.swift in Sources */,
+				C241C28E280DE7D700A89890 /* NetworkService.docc in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C241C28F280DE7D700A89890 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C241C29B280DE7D700A89890 /* NetworkServiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C2907FBE278B475200FAB716 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -885,6 +1042,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		C241C296280DE7D700A89890 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C241C289280DE7D700A89890 /* NetworkService */;
+			targetProxy = C241C295280DE7D700A89890 /* PBXContainerItemProxy */;
+		};
+		C241C298280DE7D700A89890 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C293664D2721D8AA005BD90D /* Navigation */;
+			targetProxy = C241C297280DE7D700A89890 /* PBXContainerItemProxy */;
+		};
+		C241C29E280DE7D700A89890 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C241C289280DE7D700A89890 /* NetworkService */;
+			targetProxy = C241C29D280DE7D700A89890 /* PBXContainerItemProxy */;
+		};
 		C2907FCE278B475300FAB716 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = C2907FC1278B475200FAB716 /* StorageService */;
@@ -929,6 +1101,106 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		C241C2A1280DE7D700A89890 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 693VEXZB54;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bodasooqa.NetworkService;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C241C2A2280DE7D700A89890 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 693VEXZB54;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bodasooqa.NetworkService;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C241C2A3280DE7D700A89890 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 693VEXZB54;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bodasooqa.NetworkServiceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/Navigation";
+			};
+			name = Debug;
+		};
+		C241C2A4280DE7D700A89890 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 693VEXZB54;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bodasooqa.NetworkServiceTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Navigation.app/Navigation";
+			};
+			name = Release;
+		};
 		C2907FDA278B475300FAB716 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66BE8F0F26805685948F294E /* Pods-StorageService.debug.xcconfig */;
@@ -1310,6 +1582,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C241C2A5280DE7D700A89890 /* Build configuration list for PBXNativeTarget "NetworkService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C241C2A1280DE7D700A89890 /* Debug */,
+				C241C2A2280DE7D700A89890 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C241C2A6280DE7D700A89890 /* Build configuration list for PBXNativeTarget "NetworkServiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C241C2A3280DE7D700A89890 /* Debug */,
+				C241C2A4280DE7D700A89890 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C2907FDE278B475300FAB716 /* Build configuration list for PBXNativeTarget "StorageService" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
