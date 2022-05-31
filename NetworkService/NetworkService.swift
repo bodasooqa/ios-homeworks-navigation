@@ -5,6 +5,30 @@
 //  Created by t.lolaev on 18.04.2022.
 //
 
+struct Planet: Decodable {
+    let name: String
+    let residents: [String]?
+    let orbitalPeriod: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case residents
+        case orbitalPeriod = "orbital_period"
+    }
+}
+
+struct Resident: Decodable {
+    let name: String
+}
+
+struct Todo {
+    let title: String
+    
+    init(dictionary: [String: Any]) {
+        title = dictionary["title"] as! String
+    }
+}
+
 public enum AppConfiguration: String, CaseIterable {
     case people = "https://swapi.dev/api/people/8"
     case starships = "https://swapi.dev/api/starships/3"
@@ -31,6 +55,44 @@ public struct NetworkService {
                 }
             }
             task.resume()
+        }
+    }
+    
+    private static func makeRequest(url: String, successCallback: @escaping (Data) throws -> Void) {
+        if let url = URL(string: url) {
+            URLSession.shared.dataTask(with: url) { data, response, error in
+                if let unwrappedData = data {
+                    do {
+                        try successCallback(unwrappedData)
+                    } catch let error {
+                        print(error)
+                    }
+                }
+            }.resume()
+        }
+    }
+    
+    public static func getTodo(callback: @escaping (String) -> Void) {
+        Self.makeRequest(url: "https://jsonplaceholder.typicode.com/todos/1") { data in
+            let serializedData = try JSONSerialization.jsonObject(with: data, options: [])
+            if let dict = serializedData as? [String: Any] {
+                let todo = Todo(dictionary: dict)
+                callback(todo.title)
+            }
+        }
+    }
+    
+    public static func getPlanet(callback: @escaping (String, [String]?) -> Void) {
+        Self.makeRequest(url: "https://swapi.dev/api/planets/1/") { data in
+            let decodedData = try JSONDecoder().decode(Planet.self, from: data)
+            callback("\(decodedData.name) — \(decodedData.orbitalPeriod)", decodedData.residents)
+        }
+    }
+    
+    public static func getResident(residentUrl: String, callback: @escaping (String) -> Void) {
+        Self.makeRequest(url: residentUrl) { data in
+            let decodedData = try JSONDecoder().decode(Resident.self, from: data)
+            callback(decodedData.name)
         }
     }
     

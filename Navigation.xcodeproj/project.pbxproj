@@ -16,6 +16,7 @@
 		C241C29F280DE7D700A89890 /* NetworkService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C241C28A280DE7D700A89890 /* NetworkService.framework */; };
 		C241C2A0280DE7D700A89890 /* NetworkService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C241C28A280DE7D700A89890 /* NetworkService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C241C2A8280DE81A00A89890 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C241C2A7280DE81A00A89890 /* NetworkService.swift */; };
+		C241C2AA2812F46500A89890 /* InfoViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C241C2A92812F46500A89890 /* InfoViewControllerDelegate.swift */; };
 		C25CE88E279F24D000194258 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE88D279F24D000194258 /* BaseCoordinator.swift */; };
 		C25CE890279F3BEC00194258 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE88F279F3BEC00194258 /* AppCoordinator.swift */; };
 		C25CE892279F3CAD00194258 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE891279F3CAD00194258 /* FeedCoordinator.swift */; };
@@ -169,6 +170,7 @@
 		C241C293280DE7D700A89890 /* NetworkServiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkServiceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C241C29A280DE7D700A89890 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		C241C2A7280DE81A00A89890 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		C241C2A92812F46500A89890 /* InfoViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewControllerDelegate.swift; sourceTree = "<group>"; };
 		C25CE88D279F24D000194258 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		C25CE88F279F3BEC00194258 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C25CE891279F3CAD00194258 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
@@ -491,6 +493,7 @@
 			children = (
 				C2936675272342F3005BD90D /* InfoViewController.swift */,
 				C2936677272342FE005BD90D /* InfoView.swift */,
+				C241C2A92812F46500A89890 /* InfoViewControllerDelegate.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -1001,6 +1004,7 @@
 				C29366522721D8AA005BD90D /* AppDelegate.swift in Sources */,
 				C29366682721F034005BD90D /* FeedViewController.swift in Sources */,
 				C25CE88E279F24D000194258 /* BaseCoordinator.swift in Sources */,
+				C241C2AA2812F46500A89890 /* InfoViewControllerDelegate.swift in Sources */,
 				C2B1EFBE2794BA0900B810D6 /* LoginFactory.swift in Sources */,
 				C293667F2723566A005BD90D /* UIButtonExtension.swift in Sources */,
 				C2DA439027306DCF002A3264 /* LoginView.swift in Sources */,
