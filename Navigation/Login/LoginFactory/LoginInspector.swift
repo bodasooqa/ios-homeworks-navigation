@@ -9,16 +9,17 @@ import CurrentUserService
 
 protocol LoginViewControllerDelegate {
     
-    func checkCredentials(username: String, password: String) -> Bool
+    func checkCredentials(username: String, password: String, callback: @escaping CheckCredentialsCallback) -> Void
     func bruteForce(passwordToUnlock: String)
     
 }
 
 class LoginInspector: LoginViewControllerDelegate {
     
-    public func checkCredentials(username: String, password: String) -> Bool {
+    public func checkCredentials(username: String, password: String, callback: @escaping CheckCredentialsCallback) -> Void {
         let checkerService = CheckerService.shared
-        return checkerService.checkCredentials(username: username, password: password)
+        
+        checkerService.checkCredentials(username: username, password: password, callback: callback)
     }
     
     public func bruteForce(passwordToUnlock: String) {

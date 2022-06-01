@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 import CurrentUserService
 
 class LoginViewController: ViewController {
@@ -26,6 +27,7 @@ class LoginViewController: ViewController {
         loginView.button = CustomButton(title: "Log In", titleColor: .white, action: {
             self.goToProfile()
         })
+        loginView.button?.isEnabled = false
         loginView.bruteButton = CustomButton(title: "Get password", titleColor: .white, action: { [weak self] in
             guard let self = self else { return }
             
@@ -47,6 +49,9 @@ class LoginViewController: ViewController {
         })
         
         loginView.configureButtons()
+        
+        loginView.loginInput.addTarget(self, action: #selector(onLoginInputEdit), for: .editingChanged)
+        loginView.passwordInput.addTarget(self, action: #selector(onLoginInputEdit), for: .editingChanged)
         
         return loginView
     }()
@@ -112,17 +117,50 @@ class LoginViewController: ViewController {
         loginView.scrollView.scrollIndicatorInsets = .zero
     }
     
+    @objc func onLoginInputEdit() {
+        if let loginInputText = loginView.loginInput.text, let passwordInputText = loginView.passwordInput.text {
+            if loginInputText.count > 0 && passwordInputText.count > 0 {
+                loginView.button?.isEnabled = true
+            } else {
+                loginView.button?.isEnabled = false
+            }
+        } else {
+            loginView.button?.isEnabled = false
+        }
+    }
+    
     func goToProfile() {
         ifHasCredentials { username, password in
-            let available = delegate.checkCredentials(username: username, password: password)
-            if available {
-                #if DEBUG
-                let userService = TestUserService()
-                #else
-                let userService = CurrentUserService()
-                #endif
-                onButtonTap?(username, userService)
+            delegate.checkCredentials(username: username, password: password) { [weak self] user, error in
+                guard let self = self else { return }
+                
+                if let error = error {
+                    self.handleError(error)
+                }
+                
+                if let _ = user {
+                    let userService = CurrentUserService()
+                    self.onButtonTap?(username, userService)
+                }
             }
         }
+    }
+    
+    func handleError(_ error: NSError) {
+        let authError = AuthErrorCode(_nsError: error)
+        
+        switch authError.code {
+        case .userNotFound:
+            presentAlert(title: "It's Ok", description: "\(authError.localizedDescription) We will register a new user with the specified data.")
+        default:
+            presentAlert(description: authError.localizedDescription)
+        }
+    }
+    
+    func presentAlert(title: String? = "Error", description: String) {
+        let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default)
+        alert.addAction(okAction)
+        present(alert, animated: true)
     }
 }

@@ -13,10 +13,9 @@ public protocol UserService {
 
 public class CurrentUserService: UserService {
     
-    private let currentUser: User = User(fullName: "Hipster Cat", avatar: "Cat", status: "I'm currently worked on!")
-    
     public func getUserByName(_ name: String) -> User? {
-        return name == currentUser.fullName ? currentUser : nil
+        let currentUser = User(fullName: name.split(separator: "@", maxSplits: 1).first!.description, avatar: "Cat", status: "I'm currently worked on!")
+        return currentUser
     }
     
     public init() {}

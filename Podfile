@@ -6,6 +6,8 @@ target 'Navigation' do
   use_frameworks!
 
   pod 'SnapKit'
+  pod 'FirebaseCore'
+  pod 'FirebaseAuth'
 
 end
 
@@ -18,5 +20,12 @@ target 'StorageService' do
   target 'StorageServiceTests' do
     # Pods for testing
   end
+
+end
+
+target 'CurrentUserService' do
+  use_frameworks!
+  
+  pod 'FirebaseAuth'
 
 end
