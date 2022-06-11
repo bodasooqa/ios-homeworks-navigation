@@ -8,7 +8,7 @@ target 'Navigation' do
   pod 'SnapKit'
   pod 'FirebaseCore'
   pod 'FirebaseAuth'
-
+  pod 'RealmSwift'
 end
 
 target 'StorageService' do
@@ -27,5 +27,5 @@ target 'CurrentUserService' do
   use_frameworks!
   
   pod 'FirebaseAuth'
-
+  pod 'RealmSwift'
 end
