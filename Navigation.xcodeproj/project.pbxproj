@@ -17,6 +17,8 @@
 		C241C2A0280DE7D700A89890 /* NetworkService.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = C241C28A280DE7D700A89890 /* NetworkService.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		C241C2A8280DE81A00A89890 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C241C2A7280DE81A00A89890 /* NetworkService.swift */; };
 		C241C2AA2812F46500A89890 /* InfoViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C241C2A92812F46500A89890 /* InfoViewControllerDelegate.swift */; };
+		C2593C70284E08BA00080725 /* RealmService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2593C6F284E08BA00080725 /* RealmService.swift */; };
+		C2593C71284E093B00080725 /* AuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2593C69284D846900080725 /* AuthModel.swift */; };
 		C25CE88E279F24D000194258 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE88D279F24D000194258 /* BaseCoordinator.swift */; };
 		C25CE890279F3BEC00194258 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE88F279F3BEC00194258 /* AppCoordinator.swift */; };
 		C25CE892279F3CAD00194258 /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25CE891279F3CAD00194258 /* FeedCoordinator.swift */; };
@@ -181,6 +183,8 @@
 		C241C29A280DE7D700A89890 /* NetworkServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceTests.swift; sourceTree = "<group>"; };
 		C241C2A7280DE81A00A89890 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C241C2A92812F46500A89890 /* InfoViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewControllerDelegate.swift; sourceTree = "<group>"; };
+		C2593C69284D846900080725 /* AuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthModel.swift; sourceTree = "<group>"; };
+		C2593C6F284E08BA00080725 /* RealmService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmService.swift; sourceTree = "<group>"; };
 		C25CE88D279F24D000194258 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		C25CE88F279F3BEC00194258 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		C25CE891279F3CAD00194258 /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
@@ -352,6 +356,21 @@
 			path = NetworkServiceTests;
 			sourceTree = "<group>";
 		};
+		C2593C68284D845900080725 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				C2593C69284D846900080725 /* AuthModel.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		C2593C6C284D852C00080725 /* services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
 		C25CE88C279F24B800194258 /* coordinators */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,23 +469,25 @@
 		C29366502721D8AA005BD90D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				C25CE89B27A1BA0100194258 /* factories */,
-				C25CE88C279F24B800194258 /* coordinators */,
-				C2B1EFBF27960AA800B810D6 /* components */,
-				C293667D27235657005BD90D /* extensions */,
-				C29366512721D8AA005BD90D /* AppDelegate.swift */,
-				C29366532721D8AA005BD90D /* SceneDelegate.swift */,
-				C29366552721D8AA005BD90D /* ViewController.swift */,
-				C293665A2721D8AE005BD90D /* Assets.xcassets */,
-				C293665C2721D8AE005BD90D /* LaunchScreen.storyboard */,
 				C287517A2846B66D00D51B14 /* GoogleService-Info.plist */,
 				C293665F2721D8AE005BD90D /* Info.plist */,
+				C29366512721D8AA005BD90D /* AppDelegate.swift */,
+				C29366532721D8AA005BD90D /* SceneDelegate.swift */,
 				C29366652721ECFD005BD90D /* TabBarController.swift */,
-				C2B1EFB927939BF000B810D6 /* Login */,
+				C29366552721D8AA005BD90D /* ViewController.swift */,
+				C293665A2721D8AE005BD90D /* Assets.xcassets */,
+				C2B1EFBF27960AA800B810D6 /* components */,
+				C25CE88C279F24B800194258 /* coordinators */,
+				C293667D27235657005BD90D /* extensions */,
+				C25CE89B27A1BA0100194258 /* factories */,
+				C2593C6C284D852C00080725 /* services */,
+				C2593C68284D845900080725 /* model */,
 				C29366792723432B005BD90D /* Feed */,
-				C293667A2723433E005BD90D /* Profile */,
-				C293667B27234359005BD90D /* Post */,
 				C293667C2723435F005BD90D /* Info */,
+				C293665C2721D8AE005BD90D /* LaunchScreen.storyboard */,
+				C2B1EFB927939BF000B810D6 /* Login */,
+				C293667B27234359005BD90D /* Post */,
+				C293667A2723433E005BD90D /* Profile */,
 			);
 			path = Navigation;
 			sourceTree = "<group>";
@@ -532,6 +553,7 @@
 				C2B1EF97278F6CCC00B810D6 /* CurrentUserService.h */,
 				C2B1EF98278F6CCC00B810D6 /* CurrentUserService.docc */,
 				C2B1EFB3278F6D4200B810D6 /* CurrentUserService.swift */,
+				C2593C6F284E08BA00080725 /* RealmService.swift */,
 				C2B1EFB727938C3D00B810D6 /* CheckerService.swift */,
 			);
 			path = CurrentUserService;
@@ -1079,6 +1101,8 @@
 				C2B1EFB827938C3D00B810D6 /* CheckerService.swift in Sources */,
 				C2B1EFB6278F728700B810D6 /* UserModel.swift in Sources */,
 				C2B1EF99278F6CCC00B810D6 /* CurrentUserService.docc in Sources */,
+				C2593C70284E08BA00080725 /* RealmService.swift in Sources */,
+				C2593C71284E093B00080725 /* AuthModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
