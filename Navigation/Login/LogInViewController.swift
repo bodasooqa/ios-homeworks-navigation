@@ -75,7 +75,7 @@ class LoginViewController: ViewController {
         
         navigationController?.navigationBar.isHidden = true
         
-        if let authModel = realmManager.getAuthModel().first {
+        if let authModel = realmManager.getAuthModel()?.first {
             loginView.loginInput.text = authModel.email
             loginView.passwordInput.text = authModel.password
             

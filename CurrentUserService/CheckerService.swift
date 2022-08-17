@@ -81,7 +81,7 @@ public class CheckerService: CheckerServiceProtocol {
             authModel.email = email
             authModel.password = password
             
-            realmManager.saveAuthModel(authModel)
+            realmManager.saveModel(authModel)
             
             callback(user, nil)
         case .failure(let error):

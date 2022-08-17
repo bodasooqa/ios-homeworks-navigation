@@ -15,14 +15,30 @@ public class RealmManager {
     
     let localRealm = try! Realm()
     
-    public func getAuthModel() -> Results<AuthModel> {
-        return localRealm.objects(AuthModel.self)
+    private func makeWithRealm(callback: (_ realm: Realm) throws -> Void) {
+        do {
+            let realm = try Realm()
+            try callback(realm)
+        } catch let error {
+            print(error)
+        }
     }
     
-    public func saveAuthModel(_ model: AuthModel) {
-        try! localRealm.write({
-            localRealm.add(model)
-        })
+    public func getAuthModel() -> Results<AuthModel>? {
+        var result: Results<AuthModel>?
+        makeWithRealm { realm in
+            result = realm.objects(AuthModel.self)
+        }
+        
+        return result
+    }
+    
+    public func saveModel(_ model: Object) {
+        makeWithRealm { realm in
+            try realm.write({
+                realm.add(model)
+            })
+        }
     }
     
 }
