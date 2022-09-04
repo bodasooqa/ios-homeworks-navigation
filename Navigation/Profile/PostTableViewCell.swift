@@ -58,12 +58,16 @@ class PostTableViewCell: UITableViewCell {
         return viewsLabel
     }()
     
+    var post: Post?
+    
     var subViews: [UIView] {
         [headerLabel, postImage, descriptionLabel, likesLabel, viewsLabel]
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        addRecognizer()
         
         subViews.forEach {
             contentView.addSubview($0)
@@ -78,11 +82,20 @@ class PostTableViewCell: UITableViewCell {
     }
     
     func set(post: Post) {
+        self.post = post
         headerLabel.text = post.author
         setImage(post.image)
         descriptionLabel.text = post.description
         likesLabel.text = "Likes: \(post.likes)"
         viewsLabel.text = "Views: \(post.views)"
+    }
+    
+    func set(postEntity: PostEntity) {
+        headerLabel.text = postEntity.author ?? ""
+        setImage(postEntity.image ?? "")
+        descriptionLabel.text = postEntity.desc ?? ""
+        likesLabel.text = "Likes: \(postEntity.likes)"
+        viewsLabel.text = "Views: \(postEntity.views)"
     }
     
     private func setImage(_ image: String) {
@@ -119,6 +132,21 @@ class PostTableViewCell: UITableViewCell {
             viewsLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 16),
             viewsLabel.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor),
         ])
+    }
+    
+    private func addRecognizer() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        addGestureRecognizer(tap)
+    }
+    
+}
+
+extension PostTableViewCell {
+    
+    @objc public func doubleTapped() {
+        print("descriptionLabel")
+        DataBaseManager.shared.addPost(post)
     }
     
 }
