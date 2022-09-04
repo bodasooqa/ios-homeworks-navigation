@@ -145,7 +145,6 @@ class PostTableViewCell: UITableViewCell {
 extension PostTableViewCell {
     
     @objc public func doubleTapped() {
-        print("descriptionLabel")
         DataBaseManager.shared.addPost(post)
     }
     

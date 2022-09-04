@@ -34,7 +34,7 @@ class DataBaseManager {
         
         let storeName = "PostModel.sqlite"
         let persistentStoreURL = documentsDirectoryURL.appendingPathComponent(storeName)
-        print(persistentStoreURL)
+        
         do {
             try persistentStoreCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: persistentStoreURL, options: nil)
         } catch {

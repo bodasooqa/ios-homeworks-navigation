@@ -19,6 +19,11 @@ class FavoritesViewController: ViewController {
         super.viewDidLoad()
         
         configureTableView()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         fetchData()
     }
     
