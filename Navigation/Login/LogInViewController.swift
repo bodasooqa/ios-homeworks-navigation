@@ -11,6 +11,8 @@ import CurrentUserService
 
 class LoginViewController: ViewController {
     
+    private let realmManager: RealmManager = .shared
+    
     var onButtonTap: ((_ username: String, _ service: UserService) -> Void)?
     
     weak var coordinator: ProfileCoordinator? {
@@ -72,6 +74,14 @@ class LoginViewController: ViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.isHidden = true
+        
+        if let authModel = realmManager.getAuthModel()?.first {
+            loginView.loginInput.text = authModel.email
+            loginView.passwordInput.text = authModel.password
+            
+            onLoginInputEdit()
+            goToProfile()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

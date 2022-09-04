@@ -22,6 +22,8 @@ public class CheckerService: CheckerServiceProtocol {
     
     private let auth = Auth.auth()
     
+    private let realmManager: RealmManager = .shared
+    
     private let username: String = "Hipster Cat"
     private let password: String = "12345"
     
@@ -75,6 +77,12 @@ public class CheckerService: CheckerServiceProtocol {
     private func handleResult(_ result: Result<AuthDataResult, NSError>, email: String, password: String, callback: @escaping CheckCredentialsCallback) {
         switch result {
         case .success(let user):
+            let authModel = AuthModel()
+            authModel.email = email
+            authModel.password = password
+            
+            realmManager.saveModel(authModel)
+            
             callback(user, nil)
         case .failure(let error):
             self.handleError(error, email: email, password: password, callback: callback)
