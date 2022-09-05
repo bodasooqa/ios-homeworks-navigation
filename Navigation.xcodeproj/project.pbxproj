@@ -84,6 +84,9 @@
 		C2FC5114273E86410096DF28 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FC5113273E86410096DF28 /* PostTableViewCell.swift */; };
 		CEE8EA6213367FA4649B7F88 /* Pods_StorageService_StorageServiceTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9616BFBFDA97D3D9FE186F7 /* Pods_StorageService_StorageServiceTests.framework */; };
 		DD5D4A387C8D4801AA5B3C57 /* Pods_CurrentUserService.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6C161573420F0C680F64CF3 /* Pods_CurrentUserService.framework */; };
+		F263695B28C4E02E00B54D20 /* DataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F263695A28C4E02E00B54D20 /* DataBaseManager.swift */; };
+		F263696028C538BF00B54D20 /* PostModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F263695E28C538BF00B54D20 /* PostModel.xcdatamodeld */; };
+		F263696328C5442A00B54D20 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F263696228C5442A00B54D20 /* FavoritesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -244,6 +247,9 @@
 		C6C161573420F0C680F64CF3 /* Pods_CurrentUserService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CurrentUserService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CDD33D9C0CB31682562232C7 /* Pods-Navigation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Navigation.release.xcconfig"; path = "Target Support Files/Pods-Navigation/Pods-Navigation.release.xcconfig"; sourceTree = "<group>"; };
 		DA3EB3B7A58D47476799CC55 /* Pods_Navigation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Navigation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F263695A28C4E02E00B54D20 /* DataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseManager.swift; sourceTree = "<group>"; };
+		F263695F28C538BF00B54D20 /* PostModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PostModel.xcdatamodel; sourceTree = "<group>"; };
+		F263696228C5442A00B54D20 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		F94828F92C0B1D71E7CB4085 /* Pods-StorageService.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StorageService.release.xcconfig"; path = "Target Support Files/Pods-StorageService/Pods-StorageService.release.xcconfig"; sourceTree = "<group>"; };
 		FEE618D9F8F95D18D7CFABB9 /* Pods_StorageService.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StorageService.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -469,6 +475,7 @@
 		C29366502721D8AA005BD90D /* Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				F263695628C4DC7900B54D20 /* Database */,
 				C287517A2846B66D00D51B14 /* GoogleService-Info.plist */,
 				C293665F2721D8AE005BD90D /* Info.plist */,
 				C29366512721D8AA005BD90D /* AppDelegate.swift */,
@@ -487,6 +494,7 @@
 				C293665C2721D8AE005BD90D /* LaunchScreen.storyboard */,
 				C2B1EFB927939BF000B810D6 /* Login */,
 				C293667B27234359005BD90D /* Post */,
+				F263695D28C52A2E00B54D20 /* Favorites */,
 				C293667A2723433E005BD90D /* Profile */,
 			);
 			path = Navigation;
@@ -609,6 +617,23 @@
 				C2FC5111273ADA510096DF28 /* PostModel.swift */,
 			);
 			path = models;
+			sourceTree = "<group>";
+		};
+		F263695628C4DC7900B54D20 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				F263695A28C4E02E00B54D20 /* DataBaseManager.swift */,
+				F263695E28C538BF00B54D20 /* PostModel.xcdatamodeld */,
+			);
+			path = Database;
+			sourceTree = "<group>";
+		};
+		F263695D28C52A2E00B54D20 /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				F263696228C5442A00B54D20 /* FavoritesViewController.swift */,
+			);
+			path = Favorites;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1060,6 +1085,7 @@
 				C2B1EFC127960B5500B810D6 /* CustomButton.swift in Sources */,
 				C25CE8A427A1CA5400194258 /* PostData.swift in Sources */,
 				C29366872724D684005BD90D /* CustomTextField.swift in Sources */,
+				F263696028C538BF00B54D20 /* PostModel.xcdatamodeld in Sources */,
 				C25CE8A227A1C5CA00194258 /* PostViewModel.swift in Sources */,
 				C25CE890279F3BEC00194258 /* AppCoordinator.swift in Sources */,
 				C2DA438E273061C5002A3264 /* LogInViewController.swift in Sources */,
@@ -1070,6 +1096,7 @@
 				C25CE89E27A1BA3600194258 /* ModuleFactory.swift in Sources */,
 				C2936678272342FE005BD90D /* InfoView.swift in Sources */,
 				C29366562721D8AA005BD90D /* ViewController.swift in Sources */,
+				F263696328C5442A00B54D20 /* FavoritesViewController.swift in Sources */,
 				C29366522721D8AA005BD90D /* AppDelegate.swift in Sources */,
 				C29366682721F034005BD90D /* FeedViewController.swift in Sources */,
 				C25CE88E279F24D000194258 /* BaseCoordinator.swift in Sources */,
@@ -1077,6 +1104,7 @@
 				C2B1EFBE2794BA0900B810D6 /* LoginFactory.swift in Sources */,
 				C293667F2723566A005BD90D /* UIButtonExtension.swift in Sources */,
 				C2DA439027306DCF002A3264 /* LoginView.swift in Sources */,
+				F263695B28C4E02E00B54D20 /* DataBaseManager.swift in Sources */,
 				C25CE892279F3CAD00194258 /* FeedCoordinator.swift in Sources */,
 				C25CE8A027A1BAF600194258 /* Modules.swift in Sources */,
 				C25CE89427A0019100194258 /* PostCoordinator.swift in Sources */,
@@ -1751,6 +1779,19 @@
 			productName = iOSIntPackage;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		F263695E28C538BF00B54D20 /* PostModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F263695F28C538BF00B54D20 /* PostModel.xcdatamodel */,
+			);
+			currentVersion = F263695F28C538BF00B54D20 /* PostModel.xcdatamodel */;
+			path = PostModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = C29366462721D8AA005BD90D /* Project object */;
 }

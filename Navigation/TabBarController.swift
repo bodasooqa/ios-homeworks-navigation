@@ -11,7 +11,8 @@ class TabBarController: UITabBarController {
     
     private let images = [
         UIImage(systemName: "house"),
-        UIImage(systemName: "person.circle")
+        UIImage(systemName: "person.circle"),
+        UIImage(systemName: "heart")
     ]
     
     init(controllers: [UINavigationController]) {

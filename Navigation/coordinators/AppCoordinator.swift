@@ -19,6 +19,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
     
     private var feedViewController: FeedViewController?
     private var loginViewController: LoginViewController?
+    private var favoritesViewController: FavoritesViewController?
     
     init(scene: UIWindowScene) {
         self.scene = scene
@@ -43,8 +44,8 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
     private func initTabBarController() {
         initViewControllers()
         
-        if let feedViewController = feedViewController, let loginViewController = loginViewController {
-            tabBarController = TabBarController(controllers: [feedViewController, loginViewController].map({ controller in
+        if let feedViewController = feedViewController, let loginViewController = loginViewController, let favoritesViewController = favoritesViewController {
+            tabBarController = TabBarController(controllers: [feedViewController, loginViewController, favoritesViewController].map({ controller in
                 UINavigationController(rootViewController: controller)
             }))
         }
@@ -61,6 +62,7 @@ final class AppCoordinator: BaseCoordinator, Coordinator {
         
         feedViewController = FeedViewController(with: .shared)
         loginViewController = LoginViewController(with: loginFactory.getInspector(type: .login) as LoginViewControllerDelegate)
+        favoritesViewController = FavoritesViewController("Favorites")
         
         feedViewController?.onButtonTap = { post in
             self.showPost(post)
